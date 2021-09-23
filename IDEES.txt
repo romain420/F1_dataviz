@@ -2,4 +2,4 @@
 
 1) faire une foction de recupereation des toutes les information relative a une course choisie (coursID en argument).
 avoir les information sur chaque drivers de cette course (laps, pit-stop, ecurie...)
- 
+En argument laisser le choix de mettre le drivers (name ou id) pareil pour la course.
