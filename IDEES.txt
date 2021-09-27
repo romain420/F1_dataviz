@@ -3,3 +3,11 @@
 1) faire une foction de recupereation des toutes les information relative a une course choisie (coursID en argument).
 avoir les information sur chaque drivers de cette course (laps, pit-stop, ecurie...)
 En argument laisser le choix de mettre le drivers (name ou id) pareil pour la course.
+
+2) faire des fonctions qui prennent des drivers ou des équiries et qui montre une evolution d'eux dans des graph dynamic
+
+3) faire un graphe dynamique du nombre de course qui on eu lieu sur un circuit au cours de l'histoire de la F1, avec des bulles 
+qui grossicent
+(essayer de faire une fonction de ca)
+
+4) 
