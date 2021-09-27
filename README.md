@@ -28,4 +28,24 @@ Les library a installé dans l'environement anaconda sont :
   
 ## Le travail réalisé
 
+### Intro
+
 Comme nous l'avons dis précedement, dans ce projet nous avons travaillé à l'aide d'un dataset dans lequel les données étaient stoqué dans 13 fichiers 'csv' différents.
+
+### Les circuits
+
+Nous avons dans un premier temps cherché à analizé le dataframe sur les circuits. Pour chercher à voir l'atitude des différents circuits. Dans un second temps le nous
+avons cherché à les afficher sur une carte à partir de leur coordonnées géographique.
+On a donc décidé ensuite de leur attribuer une couleur en fonction du continent sur lequel il se trouve, pour une facilitée de compréhension et d'aquisition de l'informations.
+
+### Les constructeurs
+
+Dans cette partie, l'objectif était de nettoyer les données des constructeurs de F1, à fin de pouvoir les classer en fonction du nombre de point inscrit par chacuns d'entre eux.
+on a la aussi cherché a les affiché sous forme de graphe.
+
+### Les résultats 
+
+Dans le dataset mis à notre disposition, il y avait un dataframe qui regroupait toute les courses par driver ainsi que toute les information relative a celle-ci. Le premier
+problèmes auquels nous avons été confrouté était le manque d'information compréhenssible, tout était stoqué sous forme d' 'id' ('constructeurid', 'driverid'...). 
+Il nous à donc fallu merge les dataframes en fonction des id pour récuperé les noms de driver et constructeur en tout lettres pour facilité la conpréhention et la prise
+d'information dans notre dataframe.
