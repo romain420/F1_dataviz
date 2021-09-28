@@ -25,6 +25,10 @@ capacité de notre projet.
 Les library a installé dans l'environement anaconda sont : 
 
   - 'folium' lien du git : https://python-visualization.github.io/folium/installing.html
+  - Pour installer le dashboard : ```conda install -c conda-forge dash```
+  - Pour installer 'Plotly' : ```conda install -c conda-forge plotly```
+  - Pour installer 'jupyter-dash' si vous preferez travailler sur notre notebook : ```conda install -c conda-forge jupyter-dash```
+
   
 ## Le travail réalisé
 
