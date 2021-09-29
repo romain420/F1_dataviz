@@ -1,0 +1,33 @@
+####################################Les idées pour le projet####################################
+
+1) faire une foction de recupereation des toutes les information relative a une course choisie (coursID en argument).
+avoir les information sur chaque drivers de cette course (laps, pit-stop, ecurie...)
+En argument laisser le choix de mettre le drivers (name ou id) pareil pour la course.
+
+2) faire des fonctions qui prennent des drivers ou des équiries et qui montre une evolution d'eux dans des graph dynamic
+REWORK : 
+faire un scatter de driver et constructeur.
+pour les 2 : 
+- faire varrié en 3eme dimention le temps
+- absice : nombre de course
+- ordonné : nb victoire
+- rayon des bulle varie en fonction du nombre de points inscrit
+
+pour driver :
+- faire la couleur en fonction du pays ou de l'écurie à voir
+
+pour constructeurs : 
+- regrouper les 20+ grands constructeurs (ou les 10 de 2021) et leur donné la couleur de l'écurie
+- créée une couleur créer une colonne pour les couleurs écurie 
+- créée une couleur pars pays d'une écurie 
+
+3) faire un graphe dynamique du nombre de course qui on eu lieu sur un circuit au cours de l'histoire de la F1, avec des bulles 
+qui grossicent
+(essayer de faire une fonction de ca)
+sur les bules des circuits rajouter les informations des meilleurs performances (course, temps, driver...)
+REWORK : 
+Voir la partie : https://plotly.com/python/bubble-maps/ de la library 
+généré une carte du monde qui evolue au cours du temps, des cartes centré sur des continent ou pays
+
+
+4) 
