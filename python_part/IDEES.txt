@@ -4,6 +4,10 @@
 avoir les information sur chaque drivers de cette course (laps, pit-stop, ecurie...)
 En argument laisser le choix de mettre le drivers (name ou id) pareil pour la course.
 
+état du probleme : Résolue
+
+############################################################################################################
+
 2) faire des fonctions qui prennent des drivers ou des équiries et qui montre une evolution d'eux dans des graph dynamic
 REWORK : 
 faire un scatter de driver et constructeur.
@@ -21,6 +25,10 @@ pour constructeurs :
 - créée une couleur créer une colonne pour les couleurs écurie 
 - créée une couleur pars pays d'une écurie 
 
+état du probleme : En cours mais pas dynamique
+
+############################################################################################################
+
 3) faire un graphe dynamique du nombre de course qui on eu lieu sur un circuit au cours de l'histoire de la F1, avec des bulles 
 qui grossicent
 (essayer de faire une fonction de ca)
@@ -29,5 +37,21 @@ REWORK :
 Voir la partie : https://plotly.com/python/bubble-maps/ de la library 
 généré une carte du monde qui evolue au cours du temps, des cartes centré sur des continent ou pays
 
+état du probleme : /!\ A RESOUDRE /!\
 
-4) 
+############################################################################################################
+
+4) Pour pouvoir réaliser un graph dynamique le but sera de d'afficher sur chaque ligne de courses le nombre de ponits, course et victoire 
+que le driveur posséde a cette instant t.
+
+état du probleme : /!\ A RESOUDRE /!\
+
+############################################################################################################
+
+5) /!\  ATTENTION /!\ voir si il y a une vrai difference entre les points compter dans la derniere dataframe avec la fonction et 
+les points compter dans la df constructor_result et le nombre de point par constructeurs
+Si trop compliquer a determiner récupérer les infos du premier et les mettres dans le dataframe de fin avec la fonction de creation de dico
+
+état du probleme : /!\ A RESOUDRE /!\
+
+############################################################################################################
