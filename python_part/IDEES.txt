@@ -25,7 +25,7 @@ pour constructeurs :
 - créée une couleur créer une colonne pour les couleurs écurie 
 - créée une couleur pars pays d'une écurie 
 
-état du probleme : En cours mais pas dynamique
+état du probleme : tous bon sauf les graphs 
 
 ############################################################################################################
 
@@ -42,9 +42,9 @@ généré une carte du monde qui evolue au cours du temps, des cartes centré su
 ############################################################################################################
 
 4) Pour pouvoir réaliser un graph dynamique le but sera de d'afficher sur chaque ligne de courses le nombre de ponits, course et victoire 
-que le driveur posséde a cette instant t.
+que le driver posséde a cette instant t.
 
-état du probleme : /!\ A RESOUDRE /!\
+état du probleme : résolue
 
 ############################################################################################################
 
@@ -52,6 +52,6 @@ que le driveur posséde a cette instant t.
 les points compter dans la df constructor_result et le nombre de point par constructeurs
 Si trop compliquer a determiner récupérer les infos du premier et les mettres dans le dataframe de fin avec la fonction de creation de dico
 
-état du probleme : /!\ A RESOUDRE /!\
+état du probleme : plus ou moins resolu avis prof 
 
 ############################################################################################################
