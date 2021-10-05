@@ -55,3 +55,7 @@ Si trop compliquer a determiner récupérer les infos du premier et les mettres 
 état du probleme : plus ou moins resolu avis prof 
 
 ############################################################################################################
+
+6) Trouver le moyen de garder le nombre de victoire dans la colonne tant qu'il n'a pas augmenter (ne pas le remplcer par NaN ou 0)
+
+état du probleme : /!\ A RESOUDRE /!\
