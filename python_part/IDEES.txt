@@ -63,3 +63,11 @@ Si trop compliquer a determiner récupérer les infos du premier et les mettres 
 ############################################################################################################
 
 7) Objectif est de finir la map dynamique et de revoir les plot réalisé plus haut dans le notebook
+
+############################################################################################################
+
+8) regarder les cellule 19 et faire comparaison du nombre de point par race dans les dataframe plus récente.
+
+############################################################################################################
+
+9) ABSOLUMENT MODIFIER LA FONCTION df_to_dico ENLEVER LE PREMIERE ARGUMENT !!!!!
