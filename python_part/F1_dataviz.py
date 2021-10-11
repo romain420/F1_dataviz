@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
+#import
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,11 +10,14 @@ import plotly.graph_objects as go
 import plotly.express as px
 import opendatasets as od
 import os
+import dash
+from dash import dcc
+from dash import html
 
 
 # ### Création des dataframes pour chaque fichier csv avec pandas
 
-# In[94]:
+# In[2]:
 
 
 #import des fichier s'ils n'existe pas
@@ -1161,15 +1162,16 @@ filter_fastest_info = filter_race_result.query("fastestLapTime != 'no_info'")
 dico_fastest_lap = {}
 dico_fastest_lap = df_to_dico(dico_fastest_lap, filter_fastest_info, 'GP_fastes_lap', 'full_name')
 dico_fastest_lap['no_info'] = 'no_info'
+dico_fastest_lap
 
 
 # Après avoir filtré les meilleur temps par GP, le but sera de récupérer les grands pris de facon unique, soit drop si une raceId est présente plusieur fois.
 
-# In[93]:
+# In[85]:
 
 
 merge_race_result = merge_race_result.drop_duplicates(subset=['raceId'])
-# merge_race_result = merge_race_result.drop(['fastestLapTime', 'full_name'], axis=1)#on retire les colonnes qui ne nous interessent plus
+merge_race_result = merge_race_result.drop(['fastestLapTime', 'full_name'], axis=1)#on retire les colonnes qui ne nous interessent plus
 
 #integration de la nouvelle colonne a partir d'un dictionnaire
 intergre_df_columns(merge_race_result, dico_fastest_lap, 'GP_fastes_lap', 'full_name')
@@ -1189,11 +1191,11 @@ nombre_race = merge_race_result.groupby(['GP_name']).agg({'raceId':'count'}).res
 merge_race_result['nombre_GP'] = merge_race_result.groupby(['GP_name'])['raceId'].cumcount() + 1
 
 
-# In[92]:
+# In[88]:
 
 
 #test sur un GP pour voire la coerance de notre travail
-# merge_race_result.loc[merge_race_result['GP_name'] == 'Spanish Grand Prix', ['year', 'country', 'GP_fastes_lap', 'nombre_GP']]
+merge_race_result.loc[merge_race_result['GP_name'] == 'Azerbaijan Grand Prix', ['year', 'country', 'continents', 'GP_fastes_lap', 'nombre_GP']]
 
 
 # La map dynamic des GP au cours du temps a travers le monde.
@@ -1201,17 +1203,23 @@ merge_race_result['nombre_GP'] = merge_race_result.groupby(['GP_name'])['raceId'
 # In[89]:
 
 
-#encore quelque bueugue a corriger :
-#- tous les circuits de tous les continent ne s'affiche pas
-#- garder le circuit meme si pas de course dans l'année
+#encore quelques bueugues a corriger :
+#- garder le circuit meme si pas de course dans l'année (optionnel)
 fig = px.scatter_geo(merge_race_result,
                      lon = 'longitude',
                      lat = 'latitude',
-                     color = 'continents',
+                     color = 'nombre_GP', color_continuous_scale = 'Plasma',
                      hover_name = 'name',
                      size = 'nombre_GP',
                      animation_frame = 'year',
                      projection="natural earth1")
+fig.update_layout(
+    title_text = 'Evolution du nombre de courses par GP de 1950 à 2021',
+    geo = dict(
+        scope = 'europe',
+        landcolor = 'rgb(217, 217, 217)',
+        )
+    )
 fig.show()
 
 
@@ -1237,37 +1245,44 @@ def show_map(scope):
         text = merge_race_result['name'] + '<br>Fastest lap : ' + merge_race_result['GP_fastes_lap'] + 'min' + '<br>By : ' + merge_race_result['full_name'],
         marker = dict(
             size = (merge_race_result['nombre_GP']**2)/20,
-#             color = merge_race_result['continents'],
+            opacity = 0.8,
+            colorscale = 'Turbo',
+            cmin = 1,
+            color = merge_race_result['nombre_GP'],
+            cmax = merge_race_result['nombre_GP'].max(),
+            colorbar_title="Nombre de GP<br>1950-2021",
             line_color='rgb(40,40,40)',
             line_width=0.5,
             sizemode = 'area'
             )
         ))
-    #         name = '{0} - {1}'.format(lim[0],lim[1])))
-    if scope == 'world' or scope == None:
-        fig.update_layout(
-                title_text = 'Emplacement et nombre de GP de chaque circuit<br> à travers le monde',
-                showlegend = True,
-                geo = dict(
-                    scope = 'world',
-                    landcolor = 'rgb(217, 217, 217)',
-                    )
-                )
-    else:
-        fig.update_layout(
-                title_text = 'Emplacement et nombre de GP de chaque circuit<br>en ' + scope,
-                showlegend = True,
-                geo = dict(
-                    scope = scope,
-                    landcolor = 'rgb(217, 217, 217)',
-                    )
-                )
+    fig.update_layout(
+        title_text = 'Emplacement et nombre de GP de chaque circuit<br>en' + scope,
+        geo = dict(
+            scope = scope,
+            landcolor = 'rgb(217, 217, 217)',
+            )
+        )
 
     fig.show()
 
 
-# In[91]:
-
-
 #utilisation de la fonction 'show_map()'
-show_map('europe')#ligne 'color' a commenté décommenter pour récuperer les informations des couleurs
+show_map('asia')#ligne 'color' a commenté décommenter pour récuperer les informations des couleurs
+
+
+# ## Création du dashboard
+# initialisation de l'application
+app = dash.Dash(__name__)
+
+# definition du type de l'application
+app.layout = html.Div(children=[
+                      html.Div(className='row',  # Define the row element
+                               children=[
+                                  html.Div(className='four columns div-user-controls'),# partie de gauche reserve aux actions de l'utilisateur
+                                  html.Div(className='eight columns div-for-charts bg-grey')#emplcaemnt de la premiere chartre premier graph
+                                  ])
+                                ])
+#run de l'application affichage du dashboard dans une page de votre navigateur
+if __name__ == '__main__':
+    app.run_server(debug=True)
