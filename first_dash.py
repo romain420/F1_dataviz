@@ -40,11 +40,15 @@ app.layout = html.Div(id = 'container_div', style={'backgroundColor': colors['ba
 
         dcc.Graph(
             id='din_gp_map',
-            figure={}
+            figure={},
+            style={'width' : '50%',
+                   'display' : 'inline-block'}
         ),
         dcc.Graph(
             id='stat_gp_map',
-            figure={}
+            figure={},
+            style={'width' : '50%',
+                   'display' : 'inline-block'}
         ),
         html.Div(children=[
             html.Label('Continent dropdown', style = {'color' : colors['text']}),
@@ -63,6 +67,7 @@ app.layout = html.Div(id = 'container_div', style={'backgroundColor': colors['ba
             ),
         ], style = {'width' : '20%',}),
     ],
+
 )#, style={'columnCount': 2})
 
 
@@ -121,11 +126,12 @@ def update_figure(select_continent):
             )
         #mise a jour de layoutde la 2eme map
         fig2.update_layout(
-            title_text = 'Emplacement et nombre de GP de chaque circuit<br>en',
+            title_text = 'Emplacement et nombre de GP de chaque circuit<br>dans le monde',
             geo = dict(
                 scope = 'world',
                 landcolor = 'rgb(217, 217, 217)',
-                )
+                ),
+            template = 'plotly_dark'
             )
     #affichage qui depend de la nouvelle partie selectionné par l'utilisateur
     else:
@@ -176,7 +182,8 @@ def update_figure(select_continent):
             geo = dict(
                 scope = select_continent,
                 landcolor = 'rgb(217, 217, 217)',
-                )
+                ),
+            template = 'plotly_dark'
             )
     #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
     return fig, fig2
