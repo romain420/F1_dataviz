@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import folium
+# import folium
 import plotly.graph_objects as go
 import plotly.express as px
-import opendatasets as od
+# import opendatasets as od
 import os
 import dash
 from dash import dcc
@@ -28,7 +28,8 @@ colors = {
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
-app.layout = html.Div(id = 'container_div', style={'backgroundColor': colors['background']},
+app.layout = html.Div(id = 'container_div', style={'background-color': colors['background'],
+                                                   'margin' : '0'},
     children=[
         html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center', 'color': colors['text']}),
 
@@ -38,18 +39,28 @@ app.layout = html.Div(id = 'container_div', style={'backgroundColor': colors['ba
             style={'textAlign': 'center',
                    'color': colors['text']}),
 
-        dcc.Graph(
-            id='din_gp_map',
-            figure={},
-            style={'width' : '50%',
-                   'display' : 'inline-block'}
+        html.Div(id = 'div_graph', style = {'display' : 'flex',
+                                            'flex-flow' : 'row',
+                                            'justify-content' : 'space-around',
+                                            'margin-top' : '1%'},
+            children =[
+                dcc.Graph(
+                    id='din_gp_map',
+                    figure={},
+                    style={'width' : '40%',
+                           'display' : 'inline-block',
+                           'border' : '2px solid #78af9f'}
+                ),
+                dcc.Graph(
+                    id='stat_gp_map',
+                    figure={},
+                    style={'width' : '40%',
+                           'display' : 'inline-block',
+                           'border' : '2px solid #78af9f'}
+                ),
+            ]
         ),
-        dcc.Graph(
-            id='stat_gp_map',
-            figure={},
-            style={'width' : '50%',
-                   'display' : 'inline-block'}
-        ),
+
         html.Div(children=[
             html.Label('Continent dropdown', style = {'color' : colors['text']}),
             dcc.Dropdown(id = 'continent_dropdown',
