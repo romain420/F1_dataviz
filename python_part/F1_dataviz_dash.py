@@ -1374,12 +1374,13 @@ print(saison_grouby.groups['Abu Dhabi Grand Prix'])
 #         merge_race_result.to_csv()
 #         return print('\nle fichier "merge_race_result.csv" a bien été généré\n')
 
-print(merge_race_result)#il s'affiche bien lorsqu'on le print mais impossible a appeler sinon
+print(type(merge_race_result))#il s'affiche bien lorsqu'on le print mais impossible a appeler sinon
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
+def gen_csv():
     print('#############################################')
     print('\ncreation du fichier "merge_race_result.csv"')
-    merge_race_result.to_csv()#impossible d'appeler la df
+    merge_race_result.to_csv('merge_race_result.csv')#impossible d'appeler la df
     if os.path.exists('merge_race_result.csv'):
         print('\nle fichier "merge_race_result.csv" a bien été généré\n')
     else:

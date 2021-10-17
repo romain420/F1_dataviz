@@ -11,7 +11,9 @@ from dash import dcc
 from dash import html
 import time
 from dash.dependencies import Input, Output
-import F1_dataviz_dash 
+from F1_dataviz_dash import gen_csv
+
+gen_csv() 
 
 print('####################################################################')
 print('Creation du Dashboard')
