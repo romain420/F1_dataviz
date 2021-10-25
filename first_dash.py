@@ -262,13 +262,8 @@ def update_figure2(select_constructor):
                    hover_data=new_df.columns)
 
     #mise a jour du layout de la premiere map
-    # fig.update_layout(
-    #     title_text = 'Evolution du nombre de courses par GP de 1950 à 2021 en' + select_continent,
-    #     geo = dict(
-    #         scope = select_continent,
-    #         landcolor = 'rgb(217, 217, 217)',
-    #         ),
-    #     )
+    fig.update_layout(barmode='overlay')
+    fig.update_traces(opacity=0.75)
 
     #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
     return fig
