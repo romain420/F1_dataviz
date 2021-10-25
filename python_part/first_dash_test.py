@@ -11,10 +11,19 @@ from dash import dcc
 from dash import html
 import time
 from dash.dependencies import Input, Output
+from F1_dataviz_dash import gen_csv
 
+gen_csv()
+
+print('####################################################################')
+print('Creation du Dashboard')
+print('####################################################################')
+print('\n')
 
 merge_race_result = pd.read_csv('merge_race_result.csv')
-best_team_pit_stop = pd.read_csv('best_team_pit_stop.csv')
+###############################################################################################################
+#Creation du Dashboard
+###############################################################################################################
 
 merge_race_result['continents'] = merge_race_result['continents'].str.lower()
 merge_race_result['continents'] = merge_race_result['continents'].replace({'north_america' : 'north america',
@@ -62,8 +71,7 @@ app.layout = html.Div(id = 'container_div', style={'background-color': colors['b
                 ),
             ]
         ),
-        ########################################################################
-        #dropdown
+
         html.Div(children=[
             html.Label('Continent dropdown', style = {'color' : colors['text']}),
             dcc.Dropdown(id = 'continent_dropdown',
@@ -79,45 +87,8 @@ app.layout = html.Div(id = 'container_div', style={'background-color': colors['b
                 style = {'background' : '#584b4f',
                          'color' : '#78af9f'}
             ),
-        ], style = {'width' : '20%',}
-        ),
-        ########################################################################
-
-        html.Div(id = 'div_histo_pit_stop', style = {'display' : 'flex'},
-            children =[
-                dcc.Graph(
-                    id='histo_pit_stop',
-                    figure={},
-                    style={'width' : '40%',
-                           'display' : 'inline-block',
-                           'border' : '2px solid #78af9f'}
-                ),
-            ]
-        ),
-
-        ########################################################################
-        #multiple dropdaown
-
-        html.Div(children = [
-            html.Label('Multi-Select Dropdown'),
-            dcc.Dropdown(id = 'constru_dropdown',
-                options=[
-                    {'label': 'Mercedes', 'value': 'Mercedes'},
-                    {'label': u'Red Bull', 'value': 'Red Bull'},
-                    {'label': 'Ferrari', 'value': 'Ferrari'},
-                    {'label': 'Renault', 'value': 'Renault'},
-                    {'label': 'Force India', 'value': 'Force India'},
-                    {'label': 'Williams', 'value': 'Williams'},
-                    {'label': 'McLaren', 'value': 'McLaren'}
-                ],
-                value=['Red Bull', 'Mercedes'],
-                multi=True
-            ),
-            ],style = {'width' : '20%'}
-        ),
-        ########################################################################
+        ], style = {'width' : '20%',}),
     ],
-
 
 )#, style={'columnCount': 2})
 
@@ -238,40 +209,6 @@ def update_figure(select_continent):
             )
     #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
     return fig, fig2
-    # /!\WARNING/!\
-    #il n'est pas possible de scope du l'oceanie car il ne fait pas partie des scope de la fonction
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-#première partie du dashboard permettant de choisir un continent en fonction des
-#input recupere dans le dropdown
-
-#creation du callback 'input'/'Output'
-@app.callback(
-    Output('histo_pit_stop', 'figure'),
-    Input('constru_dropdown','value'))
-#fonction de generation de la carte en fonction de la région choisi ('world' par defaut)
-def update_figure2(select_constructor):
-    container = "Constructors chosen by user were: {}".format(select_constructor)
-
-    dff = best_team_pit_stop.copy()
-    new_df = dff[dff['constructors'].isin(select_constructor)]
-    #creation de la premiere map
-    fig = px.histogram(new_df, x="seconds", y="one", color="constructors",
-                   marginal="violin", # or violin, rug
-                   hover_data=new_df.columns)
-
-    #mise a jour du layout de la premiere map
-    # fig.update_layout(
-    #     title_text = 'Evolution du nombre de courses par GP de 1950 à 2021 en' + select_continent,
-    #     geo = dict(
-    #         scope = select_continent,
-    #         landcolor = 'rgb(217, 217, 217)',
-    #         ),
-    #     )
-
-    #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
-    return fig
     # /!\WARNING/!\
     #il n'est pas possible de scope du l'oceanie car il ne fait pas partie des scope de la fonction
 # ------------------------------------------------------------------------------
