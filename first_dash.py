@@ -30,92 +30,140 @@ colors = {
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
-app.layout = html.Div(id = 'container_div', style={'background-color': colors['background'],
+app.layout = html.Section(id = 'container_div', style={'background-color': colors['background'],
                                                    'margin' : '0'},
     children=[
-        html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center', 'color': colors['text']}),
-
-        html.Div(children='''
-            This dashboard is going to give you some completary information abour Formula 1.
-            ''',
-            style={'textAlign': 'center',
-                   'color': colors['text']}),
-
-        html.Div(id = 'div_graph', style = {'display' : 'flex',
-                                            'flex-flow' : 'row',
-                                            'justify-content' : 'space-around',
-                                            'margin-top' : '1%'},
-            children =[
-                dcc.Graph(
-                    id='din_gp_map',
-                    figure={},
-                    style={'width' : '40%',
-                           'display' : 'inline-block',
-                           'border' : '2px solid #78af9f'}
-                ),
-                dcc.Graph(
-                    id='stat_gp_map',
-                    figure={},
-                    style={'width' : '40%',
-                           'display' : 'inline-block',
-                           'border' : '2px solid #78af9f'}
-                ),
-            ]
-        ),
         ########################################################################
-        #dropdown
-        html.Div(children=[
-            html.Label('Continent dropdown', style = {'color' : colors['text']}),
-            dcc.Dropdown(id = 'continent_dropdown',
-                options=[
-                    {'label': u'Europe', 'value': 'europe'},
-                    {'label': 'Africa', 'value': 'africa'},
-                    {'label': 'North America', 'value': 'north america'},
-                    {'label': 'South America', 'value': 'south america'},
-                    {'label' : 'World', 'value' : 'world'},
-                    {'label': 'Asia', 'value': 'asia'}
-                ],
-                value='world',
-                style = {'background' : '#584b4f',
-                         'color' : '#78af9f'}
+        #division de la partie haute
+        html.Section(id = 'upper_div', style = {'background-color' : 'blue',
+                                                'display' : 'flex',
+                                                'flex-flow' : 'row',
+                                                }, children=[
+            ########################################################################
+            #left tool bar
+            html.Div(id = 'left_tool_bar', style = {'background-color' : 'pink',
+                                                    'width': '20%',
+                                                    'display' : 'flex',
+                                                    'flex-flow' : 'column',
+                                                    #'justify-content' : 'center',
+                                                    'padding-top' : '1%',
+                                                    'align-items' : 'center'}, children=[
+                ########################################################################
+                #dropdown
+                html.Div(children=[
+                    html.Label('Continent dropdown', style = {'color' : colors['text']}),
+                    dcc.Dropdown(id = 'continent_dropdown',
+                        options=[
+                            {'label': u'Europe', 'value': 'europe'},
+                            {'label': 'Africa', 'value': 'africa'},
+                            {'label': 'North America', 'value': 'north america'},
+                            {'label': 'South America', 'value': 'south america'},
+                            {'label' : 'World', 'value' : 'world'},
+                            {'label': 'Asia', 'value': 'asia'}
+                        ],
+                        value='world',
+                        style = {'background' : '#584b4f',
+                                 'color' : '#78af9f'}
+                    ),
+                ], style = {'width' : '85%'}#, 'margin' : 'auto'
+                ),
+                ########################################################################
+
+                ########################################################################
+                #multiple dropdaown
+                html.Div(children = [
+                    html.Label('Multi-Select Dropdown'),
+                    dcc.Dropdown(id = 'constru_dropdown',
+                        options=[
+                            {'label': 'Mercedes', 'value': 'Mercedes'},
+                            {'label': u'Red Bull', 'value': 'Red Bull'},
+                            {'label': 'Ferrari', 'value': 'Ferrari'},
+                            {'label': 'Renault', 'value': 'Renault'},
+                            {'label': 'Force India', 'value': 'Force India'},
+                            {'label': 'Williams', 'value': 'Williams'},
+                            {'label': 'McLaren', 'value': 'McLaren'}
+                        ],
+                        value=['Red Bull', 'Mercedes'],
+                        multi=True
+                    ),
+                    ],style = {'width' : '85%'}#, 'margin' : 'auto'
+                ),
+                ########################################################################
+            ],),
+            ########################################################################
+
+            ########################################################################
+            #right part of upper part
+            html.Div(id = 'right_part', style = {'background-color' : 'green',
+                                                 'width': '80%',
+                                                 'display' : 'flex',
+                                                 'flex-flow' : 'column'}, children=[
+
+                ########################################################################
+                #header logo division
+                html.Div(id = 'header_logo', style = {'display' : 'flex',
+                                                      'flex-flow' : 'row',
+                                                      'margin-top'  : '1%'}, children=[
+
+                    html.Img(id = 'logo', style={'width' : '100px',
+                                                 'height' : 'auto',
+                                                 'margin-left' : '15%'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
+                    html.Div(id = 'title', style = {'margin-left' : '5%'}, children=[
+                        html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center', 'color': colors['text']}),
+
+                        html.Div(children='''
+                            This dashboard is going to give you some completary information abour Formula 1.
+                            ''',
+                            style={'textAlign': 'center',
+                                   'color': colors['text']}),
+                    ],),
+                ],),
+                ########################################################################
+
+
+                html.Div(id = 'div_graph', style = {'display' : 'flex',
+                                                    'flex-flow' : 'row',
+                                                    'justify-content' : 'space-around',
+                                                    'margin-top' : '3%'},
+                    children =[
+                        dcc.Graph(
+                            id='din_gp_map',
+                            figure={},
+                            style={'width' : '40%',
+                                   'display' : 'inline-block',
+                                   'border' : '2px solid #78af9f'}
+                        ),
+                        dcc.Graph(
+                            id='stat_gp_map',
+                            figure={},
+                            style={'width' : '40%',
+                                   'display' : 'inline-block',
+                                   'border' : '2px solid #78af9f'}
+                        ),
+                    ]
+                ),
+            ],),
+            ########################################################################
+        ],),
+        ########################################################################
+
+        ########################################################################
+        #division partie basse
+        html.Section(id = 'down_div', style = {'background-color' : 'red'},children=[
+
+
+            html.Div(id = 'div_histo_pit_stop', style = {'display' : 'flex'},
+                children =[
+                    dcc.Graph(
+                        id='histo_pit_stop',
+                        figure={},
+                        style={'width' : '40%',
+                               'display' : 'inline-block',
+                               'border' : '2px solid #78af9f'}
+                    ),
+                ]
             ),
-        ], style = {'width' : '20%',}
-        ),
-        ########################################################################
-
-        html.Div(id = 'div_histo_pit_stop', style = {'display' : 'flex'},
-            children =[
-                dcc.Graph(
-                    id='histo_pit_stop',
-                    figure={},
-                    style={'width' : '40%',
-                           'display' : 'inline-block',
-                           'border' : '2px solid #78af9f'}
-                ),
-            ]
-        ),
-
-        ########################################################################
-        #multiple dropdaown
-
-        html.Div(children = [
-            html.Label('Multi-Select Dropdown'),
-            dcc.Dropdown(id = 'constru_dropdown',
-                options=[
-                    {'label': 'Mercedes', 'value': 'Mercedes'},
-                    {'label': u'Red Bull', 'value': 'Red Bull'},
-                    {'label': 'Ferrari', 'value': 'Ferrari'},
-                    {'label': 'Renault', 'value': 'Renault'},
-                    {'label': 'Force India', 'value': 'Force India'},
-                    {'label': 'Williams', 'value': 'Williams'},
-                    {'label': 'McLaren', 'value': 'McLaren'}
-                ],
-                value=['Red Bull', 'Mercedes'],
-                multi=True
-            ),
-            ],style = {'width' : '20%'}
-        ),
-        ########################################################################
+        ],),
     ],
 
 

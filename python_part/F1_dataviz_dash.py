@@ -1387,7 +1387,7 @@ colors = {
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
-app.layout = html.Div(id = 'container_div', style={'background-color': colors['background'],
+app.layout = html.section(id = 'container_div', style={'background-color': colors['background'],
                                                    'margin' : '0'},
     children=[
         html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center', 'color': colors['text']}),
