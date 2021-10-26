@@ -22,36 +22,48 @@ merge_race_result['continents'] = merge_race_result['continents'].replace({'nort
 
 ############################################################################################
 
-colors = {
-    'background': '#353435',
-    'text': '#afb5bb'
-    }
+# colors = {
+#     'background': '#353435',
+#     'text': '#afb5bb'
+#     }
+
+markdown_map = '''
+### Cartes sur le nombre de Grand Prix
+C'est 2 cartes servent à illuster le nombre de Grand Prix aillant eu lieux sur chaque circuit à travers le monde.
+
+La carte de gauche est dynamique dans le temps et montre l'evolution du nombre de courses saison après saison. Celle de droite
+elle ne permet que de visualiser de façon statique toute les courses qui ont eu lieux sur chaque circuit.
+
+*Grace au callback vous pouvez changer de scope et choisir le continent qui vous interresse dans le premier dropdown de la toolbar à gauche de la page*
+'''
 
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
-app.layout = html.Section(id = 'container_div', style={'background-color': colors['background'],
+app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F3F4',
                                                    'margin' : '0'},
     children=[
         ########################################################################
         #division de la partie haute
-        html.Section(id = 'upper_div', style = {'background-color' : 'blue',
+        html.Section(id = 'upper_div', style = {'background-color' : '#F5F3F4',
                                                 'display' : 'flex',
                                                 'flex-flow' : 'row',
                                                 }, children=[
             ########################################################################
             #left tool bar
-            html.Div(id = 'left_tool_bar', style = {'background-color' : 'pink',
+            html.Div(id = 'left_tool_bar', style = {'background-color' : '#B1A7A6',
                                                     'width': '20%',
                                                     'display' : 'flex',
                                                     'flex-flow' : 'column',
-                                                    #'justify-content' : 'center',
-                                                    'padding-top' : '1%',
+                                                    # 'justify-content' : 'space-around',
+                                                    'padding-top' : '0.5%',
                                                     'align-items' : 'center'}, children=[
+
+                html.H2(children = 'Tool-bar pour la gestion des callbacks', style={'text-align' : 'center', 'color' : '#161A1D'}),
                 ########################################################################
                 #dropdown
                 html.Div(children=[
-                    html.Label('Continent dropdown', style = {'color' : colors['text']}),
+                    html.Label('Dropdown selection du continent', style = {'color' : '#0B090A', 'font-size' : '1.1em'}),
                     dcc.Dropdown(id = 'continent_dropdown',
                         options=[
                             {'label': u'Europe', 'value': 'europe'},
@@ -62,8 +74,8 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
                             {'label': 'Asia', 'value': 'asia'}
                         ],
                         value='world',
-                        style = {'background' : '#584b4f',
-                                 'color' : '#78af9f'}
+                        style = {'background' : '#E5383B',
+                                 'color' : '#0B090A'}
                     ),
                 ], style = {'width' : '85%'}#, 'margin' : 'auto'
                 ),
@@ -72,7 +84,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
                 ########################################################################
                 #multiple dropdaown
                 html.Div(children = [
-                    html.Label('Multi-Select Dropdown'),
+                    html.Label("Selection multiple de constructeurs", style = {'color' : '#0B090A', 'font-size' : '1.1em'}),
                     dcc.Dropdown(id = 'constru_dropdown',
                         options=[
                             {'label': 'Mercedes', 'value': 'Mercedes'},
@@ -84,9 +96,11 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
                             {'label': 'McLaren', 'value': 'McLaren'}
                         ],
                         value=['Red Bull', 'Mercedes'],
+                        style = {'background' : '#E5383B',
+                                 'color' : '#0B090A'},
                         multi=True
                     ),
-                    ],style = {'width' : '85%'}#, 'margin' : 'auto'
+                    ],style = {'width' : '85%', 'padding-top' : '8%',}#, 'margin' : 'auto'
                 ),
                 ########################################################################
             ],),
@@ -94,7 +108,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
 
             ########################################################################
             #right part of upper part
-            html.Div(id = 'right_part', style = {'background-color' : 'green',
+            html.Div(id = 'right_part', style = {'background-color' : '#F5F3F4',
                                                  'width': '80%',
                                                  'display' : 'flex',
                                                  'flex-flow' : 'column'}, children=[
@@ -103,45 +117,61 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
                 #header logo division
                 html.Div(id = 'header_logo', style = {'display' : 'flex',
                                                       'flex-flow' : 'row',
-                                                      'margin-top'  : '1%'}, children=[
+                                                      'margin-top'  : '0.7%'}, children=[
 
-                    html.Img(id = 'logo', style={'width' : '100px',
+                    html.Img(id = 'logo', style={'width' : '170px',
                                                  'height' : 'auto',
-                                                 'margin-left' : '15%'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
-                    html.Div(id = 'title', style = {'margin-left' : '5%'}, children=[
-                        html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center', 'color': colors['text']}),
+                                                 'margin-left' : '8%'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
+                    html.Div(id = 'title', style = {'margin-left' : '5%', 'justify-content' : 'center'}, children=[
+                        html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center',
+                                                                                   'color': '#A4161A',
+                                                                                   'font-size' : '2em',
+                                                                                   'justify-content' : 'center'}),
 
                         html.Div(children='''
                             This dashboard is going to give you some completary information abour Formula 1.
                             ''',
                             style={'textAlign': 'center',
-                                   'color': colors['text']}),
+                                   'color': '#161A1D',
+                                   'font-size' : '1.4em'}),
                     ],),
                 ],),
                 ########################################################################
 
 
-                html.Div(id = 'div_graph', style = {'display' : 'flex',
-                                                    'flex-flow' : 'row',
-                                                    'justify-content' : 'space-around',
-                                                    'margin-top' : '3%'},
-                    children =[
-                        dcc.Graph(
-                            id='din_gp_map',
-                            figure={},
-                            style={'width' : '40%',
-                                   'display' : 'inline-block',
-                                   'border' : '2px solid #78af9f'}
-                        ),
-                        dcc.Graph(
-                            id='stat_gp_map',
-                            figure={},
-                            style={'width' : '40%',
-                                   'display' : 'inline-block',
-                                   'border' : '2px solid #78af9f'}
-                        ),
-                    ]
-                ),
+                    html.Div(id= 'text_and_graph', style={'display' : 'flex',
+                                                          'flex-flow' : 'column'}, children = [
+
+                    dcc.Markdown(children=markdown_map, style={'padding-top' : '3%',
+                                                               'padding-right' : '20%',
+                                                               'padding-left' : '2%',
+                                                               'color' : '#161A1D'}),
+
+                    html.Div(id = 'div_graph', style = {'display' : 'flex',
+                                                        'flex-flow' : 'row',
+                                                        'justify-content' : 'space-around',
+                                                        'margin-top' : '1%'},
+                        children =[
+
+                            dcc.Graph(
+                                id='din_gp_map',
+                                figure={},
+                                style={'width' : '47%',
+                                       'display' : 'inline-block',
+                                       'border' : '2px solid #B1A7A6',
+                                       'border-radius' : '3%'}
+                            ),
+                            dcc.Graph(
+                                id='stat_gp_map',
+                                figure={},
+                                style={'width' : '47%',
+                                       'display' : 'inline-block',
+                                       'border' : '2px solid #B1A7A6',
+                                       'border-radius' : '3%'}
+                            ),
+                        ]
+                    ),
+                ],),
             ],),
             ########################################################################
         ],),
@@ -149,17 +179,20 @@ app.layout = html.Section(id = 'container_div', style={'background-color': color
 
         ########################################################################
         #division partie basse
-        html.Section(id = 'down_div', style = {'background-color' : 'red'},children=[
+        html.Section(id = 'down_div', style = {'background-color' : '#red',
+                                               'flex-flow' : 'row'},children=[
 
-
-            html.Div(id = 'div_histo_pit_stop', style = {'display' : 'flex'},
+            html.Div(id = 'div_histo_pit_stop', style = {'padding-top' : '1%',
+                                                         'padding-left' : '2%',
+                                                         'padding-right' : '3%'},
                 children =[
                     dcc.Graph(
                         id='histo_pit_stop',
                         figure={},
                         style={'width' : '40%',
                                'display' : 'inline-block',
-                               'border' : '2px solid #78af9f'}
+                               'border' : '2px solid #B1A7A6',
+                               'border-radius' : '3%'}
                     ),
                 ]
             ),
@@ -188,7 +221,7 @@ def update_figure(select_continent):
         fig = px.scatter_geo(merge_race_result,
                              lon = 'longitude',
                              lat = 'latitude',
-                             color = 'nombre_GP', color_continuous_scale = 'Plasma',
+                             color = 'nombre_GP', color_continuous_scale = 'ylorrd',
                              hover_name = 'name',
                              size = 'nombre_GP',
                              animation_frame = 'year',
@@ -204,7 +237,7 @@ def update_figure(select_continent):
             marker = dict(
                     size = (merge_race_result['nombre_GP']**2)/20,
                 opacity = 0.8,
-                colorscale = 'Turbo',
+                colorscale = 'ylorrd',
                 cmin = 1,
                 color = merge_race_result['nombre_GP'],
                 cmax = merge_race_result['nombre_GP'].max(),
@@ -217,7 +250,7 @@ def update_figure(select_continent):
 
         #mise a jour du layout de la premiere map
         fig.update_layout(
-            title_text = 'Evolution du nombre de courses par GP de 1950 à 2021 dans le monde',
+            title_text = 'Evolution du nombre de courses par GP <br>de 1950 à 2021 dans le monde',
             geo = dict(
                 scope = 'world',
                 landcolor = 'rgb(217, 217, 217)',
@@ -240,7 +273,7 @@ def update_figure(select_continent):
         fig = px.scatter_geo(dff,
                              lon = 'longitude',
                              lat = 'latitude',
-                             color = 'nombre_GP', color_continuous_scale = 'Plasma',
+                             color = 'nombre_GP', color_continuous_scale = 'ylorrd',
                              hover_name = 'name',
                              size = 'nombre_GP',
                              animation_frame = 'year',
@@ -257,7 +290,7 @@ def update_figure(select_continent):
             marker = dict(
                     size = (dff['nombre_GP']**2)/20,
                 opacity = 0.8,
-                colorscale = 'Turbo',
+                colorscale = 'ylorrd',
                 cmin = 1,
                 color = dff['nombre_GP'],
                 cmax = dff['nombre_GP'].max(),
@@ -269,7 +302,7 @@ def update_figure(select_continent):
             ))
         #mise a jour du layout de la premiere map
         fig.update_layout(
-            title_text = 'Evolution du nombre de courses par GP de 1950 à 2021 en' + select_continent,
+            title_text = 'Evolution du nombre de courses par GP<br> de 1950 à 2021 en ' + select_continent,
             geo = dict(
                 scope = select_continent,
                 landcolor = 'rgb(217, 217, 217)',
@@ -277,7 +310,7 @@ def update_figure(select_continent):
             )
         #mise a jour du layout de la deuxieme map
         fig2.update_layout(
-            title_text = 'Emplacement et nombre de GP de chaque circuit<br>en' + select_continent,
+            title_text = 'Emplacement et nombre de GP de chaque circuit<br>en ' + select_continent,
             geo = dict(
                 scope = select_continent,
                 landcolor = 'rgb(217, 217, 217)',
