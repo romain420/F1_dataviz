@@ -262,7 +262,8 @@ def update_figure2(select_constructor):
                    hover_data=new_df.columns)
 
     #mise a jour du layout de la premiere map
-    fig.update_layout(barmode='overlay')
+    fig.update_layout(barmode='overlay',
+                      template = 'plotly_dark')
     fig.update_traces(opacity=0.75)
 
     #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
