@@ -37,6 +37,25 @@ elle ne permet que de visualiser de façon statique toute les courses qui ont eu
 *Grace au callback vous pouvez changer de scope et choisir le continent qui vous interresse dans le premier dropdown de la toolbar à gauche de la page*
 '''
 
+markdown_histo = '''
+### Distribution des pit-stop pour les plus constructeurs de F1
+L'histogramme de gauche est un histogramme qui permet de visualiser les distributions des vitesses
+de pit-stop chez les plus grands constructeurs de F1.
+
+**Définition :** Le temps d'un pit-stop est le temps que la voiture va passer arrêté pour que tous
+les mécaniciens aient le temps de faire toutes les modification qu'ils ont besoin d'éfectuer (changement des pneus le plus souvent).
+
+*Pour comparer les constructeurs vous pouvez aussi selectionner ceux qui vous interresse dans la toolbar en haut à gauche*
+
+Pour pourvoir les comparer de façon optimal vous pouvez vous demander lequel posséde une distributions la plus à gauche, mais aussi
+lequel a l'emplitude la plus importante.
+L'amplitude montre le nombre de fois ou le pit-stop ce trouve dans cette tranche de temps.
+
+*Nous avons volontairement selectionner les plus grands constructeurs pour rendre les données plus attractive, ainsi que les temps
+de moins de 40s pour un soucis de vraisseblance et de pertinance*
+
+'''
+
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
@@ -124,7 +143,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                  'margin-left' : '8%'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
                     html.Div(id = 'title', style = {'margin-left' : '5%', 'justify-content' : 'center'}, children=[
                         html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center',
-                                                                                   'color': '#A4161A',
+                                                                                   'color': '#BA181B',
                                                                                    'font-size' : '2em',
                                                                                    'justify-content' : 'center'}),
 
@@ -184,16 +203,24 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
 
             html.Div(id = 'div_histo_pit_stop', style = {'padding-top' : '1%',
                                                          'padding-left' : '2%',
-                                                         'padding-right' : '3%'},
+                                                         'padding-right' : '3%',
+                                                         'display' : 'flex',
+                                                         'flex-flow' : 'row'},
                 children =[
                     dcc.Graph(
                         id='histo_pit_stop',
                         figure={},
-                        style={'width' : '40%',
+                        style={'width' : '50%',
                                'display' : 'inline-block',
                                'border' : '2px solid #B1A7A6',
                                'border-radius' : '3%'}
                     ),
+
+                    dcc.Markdown(children=markdown_histo, style={'padding-top' : '0.5%',
+                                                           'padding-right' : '5%',
+                                                           'padding-left' : '2%',
+                                                           'color' : '#161A1D',
+                                                           'width' : '45%'}),
                 ]
             ),
         ],),
