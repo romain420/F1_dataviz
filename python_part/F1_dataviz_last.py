@@ -18,6 +18,7 @@ from dash import html
 import time
 import plotly.io as pio
 from dash.dependencies import Input, Output
+import json
 
 # ### Création des dataframes pour chaque fichier csv avec pandas
 
@@ -35,6 +36,11 @@ if os.path.exists('formula-1-world-championship-1950-2020'):
         print('Il a moins de 3 semaine')
 else:
     print("le repertoir n'existe pas")
+    # print("Les identifiants pour ce connecter a l'API Kaggle sont les suivants")
+    # with open('kaggle.json') as kaggle_info:
+    #     kaggle_id = json.load(kaggle_info)
+    # print('Kaggle username : {}'.format(kaggle_id['username']))
+    # print('Kaggle API token : {}'.format(kaggle_id['key']))
     od.download("https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020")
     print('le repertoir exist a present')
 
