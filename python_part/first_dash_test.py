@@ -190,9 +190,10 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                       'flex-flow' : 'row',
                                                       'margin-top'  : '0.7%'}, children=[
 
-                    html.Img(id = 'logo', style={'width' : '170px',
-                                                 'height' : 'auto',
-                                                 'margin-left' : '8%'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
+                    html.Div(id= 'f1_logo',style={'margin-left' : '8%', 'padding-top':'2%'}, children = html.A(href = 'https://www.formula1.com/',children = html.Img(id = 'logo', style={'width' : '170px',
+                                                    'height' : 'auto'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
+                        ),
+                    ),
                     html.Div(id = 'title', style = {'margin-left' : '5%', 'justify-content' : 'center'}, children=[
                         html.H1(children='Formula1 1950 to 2021 Dashboard', style={'textAlign': 'center',
                                                                                    'color': '#BA181B',
