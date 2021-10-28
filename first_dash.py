@@ -61,6 +61,25 @@ de moins de 40s pour un soucis de vraisseblance et de pertinance*
 
 '''
 
+markdown_cls_driver = '''
+### Classement des drivers au cours d'une saison clompléte  
+Le graph ci-dessus permet d'afficher et de mettre en évidence l'évolution des positions de chaque driver tout au long d'une saision
+course après course.  
+
+Si nous prenons l'exemple de la saison 2020 (affichée par défaut). Nous pouvons regarder le classement de chaque driver *Grand Prix*
+après *Grand Prix*.  
+
+Prenons l'exemple de [Max Verstappen](https://fr.wikipedia.org/wiki/Max_Verstappen), nous constatons qu'il a terminé 20em lors du 1er *Grand Prix* mais à réussi à repasser 
+sur le podium du championnat dès de 3em *Grand Prix*. Il a fini par se battre tout au long de la saison pour la 2em place du championnat avec
+[Valtteri Bottas](https://fr.wikipedia.org/wiki/Valtteri_Bottas). Et finir sur la 3em marche du podium.
+
+*Vous pouvez sélectionner la saison qui vous interresse dans la toolbox de gauche*
+'''
+
+markodown_cls_const = '''
+### J'adore vraiment beaucoup JaaJ
+'''
+
 ############################################################################################
 #creation du dashboard
 app = dash.Dash(__name__)
@@ -256,17 +275,47 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                            'width' : '45%'}),
                 ]
             ),
-            html.Div(id='classement_driver', style={},children=[
+            html.Div(id='classement_driver', style={'padding-top' : '1%',
+                                                    'padding-left' : '2%',
+                                                    'padding-right' : '3%',
+                                                    'display' : 'flex',
+                                                    'flex-flow' : 'column',
+                                                    'align-items' : 'center'},children=[
+
                 dcc.Graph(
                     id='line_cls_driver',
                     figure={},
-                    style={}
+                    style={'width' : '90%',
+                            'display' : 'inline-block',
+                            'border' : '2px solid #B1A7A6',
+                            'border-radius' : '3%'}
                 ),
+                
+                dcc.Markdown(children=markdown_cls_driver, style={'padding-top' : '1%',
+                                                               'padding-right' : '20%',
+                                                               'padding-left' : '10%',
+                                                               'color' : '#161A1D'}),
+            ],),
+
+            html.Div(id='classement_const', style={'padding-top' : '3%',
+                                                    'padding-left' : '2%',
+                                                    'padding-right' : '3%',
+                                                    'display' : 'flex',
+                                                    'flex-flow' : 'column',
+                                                    'align-items' : 'center'},children=[
                 dcc.Graph(
                     id='line_cls_constructor',
                     figure={},
-                    style={}
+                    style={'width' : '90%',
+                            'display' : 'inline-block',
+                            'border' : '2px solid #B1A7A6',
+                            'border-radius' : '3%'}
                 ),
+
+                dcc.Markdown(children=markodown_cls_const, style={'padding-top' : '1%',
+                                                               'padding-right' : '20%',
+                                                               'padding-left' : '10%',
+                                                               'color' : '#161A1D'}),
             ],),
         ],),
     ],
@@ -444,7 +493,8 @@ def update_figure3(select_saison_driv):
 
     #mise a jour du layout du graph
     fig.update_layout(barmode='overlay',
-                      template = 'plotly_dark')
+                      template = 'plotly_dark',
+                      title_text = 'Classement des drivers de la saison {}'.format(select_saison_driv))
 
     #retourne classement en fonction de la saison choisi par l'utilisateur
     return fig
@@ -472,7 +522,8 @@ def update_figure4(select_saison_const):
 
     #mise a jour du layout du graph
     fig.update_layout(barmode='overlay',
-                      template = 'plotly_dark')
+                      template = 'plotly_dark',
+                      title_text = 'Classement des constructeurs de la saison {}'.format(select_saison_const))
 
     #retourne classement en fonction de la saison choisi par l'utilisateur
     return fig
