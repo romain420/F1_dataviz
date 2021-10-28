@@ -15,11 +15,16 @@ from dash.dependencies import Input, Output
 
 merge_race_result = pd.read_csv('merge_race_result.csv')
 best_team_pit_stop = pd.read_csv('best_team_pit_stop.csv')
+df_constructor_standings = pd.read_csv('df_constructor_standings.csv')
+df_driver_standings = pd.read_csv('df_driver_standings.csv')
 
 merge_race_result['continents'] = merge_race_result['continents'].str.lower()
 merge_race_result['continents'] = merge_race_result['continents'].replace({'north_america' : 'north america',
                                                                            'south_america' : 'south america'})
 
+
+constru_saison_f1 = list(df_constructor_standings.years.drop_duplicates().sort_values())
+driver_saison_f1 = list(df_driver_standings.years.drop_duplicates().sort_values())
 ############################################################################################
 
 # colors = {
@@ -118,6 +123,34 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                         style = {'background' : '#E5383B',
                                  'color' : '#0B090A'},
                         multi=True
+                    ),
+                    ],style = {'width' : '85%', 'padding-top' : '8%',}#, 'margin' : 'auto'
+                ),
+                ########################################################################
+
+                ########################################################################
+                #multiple down drivers classement
+                html.Div(children = [
+                    html.Label("Selection de la saison", style = {'color' : '#0B090A', 'font-size' : '1.1em'}),
+                    dcc.Dropdown(id = 'saison_driver_dropdown',
+                        options=[{'label':i, 'value' : i}for i in driver_saison_f1],
+                        value=2020,
+                        style = {'background' : '#E5383B',
+                                 'color' : '#0B090A'}
+                    ),
+                    ],style = {'width' : '85%', 'padding-top' : '8%',}#, 'margin' : 'auto'
+                ),
+                ########################################################################
+
+                ########################################################################
+                #multiple down constructor classement
+                html.Div(children = [
+                    html.Label("Selection de la saison", style = {'color' : '#0B090A', 'font-size' : '1.1em'}),
+                    dcc.Dropdown(id = 'saison_constructor_dropdown',
+                        options=[{'label':i, 'value' : i}for i in constru_saison_f1],
+                        value=2020,
+                        style = {'background' : '#E5383B',
+                                 'color' : '#0B090A'}
                     ),
                     ],style = {'width' : '85%', 'padding-top' : '8%',}#, 'margin' : 'auto'
                 ),
@@ -223,6 +256,18 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                            'width' : '45%'}),
                 ]
             ),
+            html.Div(id='classement_driver', style={},children=[
+                dcc.Graph(
+                    id='line_cls_driver',
+                    figure={},
+                    style={}
+                ),
+                dcc.Graph(
+                    id='line_cls_constructor',
+                    figure={},
+                    style={}
+                ),
+            ],),
         ],),
     ],
 
@@ -351,7 +396,6 @@ def update_figure(select_continent):
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-#première partie du dashboard permettant de choisir un continent en fonction des
 #input recupere dans le dropdown
 
 #creation du callback 'input'/'Output'
@@ -376,10 +420,63 @@ def update_figure2(select_constructor):
 
     #retourne la map dinamic en fonction du scope choisi pas l'utilisateur
     return fig
-    # /!\WARNING/!\
-    #il n'est pas possible de scope du l'oceanie car il ne fait pas partie des scope de la fonction
 # ------------------------------------------------------------------------------
 
+# ------------------------------------------------------------------------------
+#creation du callback 'input'/'Output'
+@app.callback(
+    Output('line_cls_driver', 'figure'),
+    Input('saison_driver_dropdown','value'))
+#fonction de generation du classement par driver en fonction de la saison ('2020' par defaut)
+def update_figure3(select_saison_driv):
+    container = "Season chosen by user is: {}".format(select_saison_driv)
+
+    dff = df_driver_standings.copy()
+    new_df = dff[dff.years == select_saison_driv]
+    new_df.reset_index(inplace = True)
+    new_df = new_df.sort_values(by = ['date', 'position'])
+    #creation du graph
+    fig = px.line(new_df, 
+            x="GP_name", 
+            y="position", 
+            color="full_name",
+            markers=True)
+
+    #mise a jour du layout du graph
+    fig.update_layout(barmode='overlay',
+                      template = 'plotly_dark')
+
+    #retourne classement en fonction de la saison choisi par l'utilisateur
+    return fig
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+#creation du callback 'input'/'Output'
+@app.callback(
+    Output('line_cls_constructor', 'figure'),
+    Input('saison_constructor_dropdown','value'))
+#fonction de generation du classement par driver en fonction de la saison ('2020' par defaut)
+def update_figure4(select_saison_const):
+    container = "Season chosen by user is: {}".format(select_saison_const)
+
+    dff = df_constructor_standings.copy()
+    new_df = dff[dff.years == select_saison_const]
+    new_df.reset_index(inplace = True)
+    new_df = new_df.sort_values(by = ['date', 'position'])
+    #creation du graph
+    fig = px.line(new_df, 
+            x="GP_name", 
+            y="position", 
+            color="name",
+            markers=True)
+
+    #mise a jour du layout du graph
+    fig.update_layout(barmode='overlay',
+                      template = 'plotly_dark')
+
+    #retourne classement en fonction de la saison choisi par l'utilisateur
+    return fig
+# ------------------------------------------------------------------------------
 
 #partie de selectiond de ce qui sera lancer a l'execution
 if __name__ == '__main__':
