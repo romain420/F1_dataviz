@@ -1504,8 +1504,6 @@ df_pit_stops.head()
 df_pit_stops.dtypes
 
 
-# In[119]:
-
 
 result_const
 
