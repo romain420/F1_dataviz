@@ -318,6 +318,11 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                                'color' : '#161A1D'}),
             ],),
         ],),
+
+        html.Section(id='last_part', style={'height':'200px',
+                                            'background-color':'#ba181b'},children=[
+            html.A('Github F1_dataviz', href='https://github.com/romain420/F1_dataviz')#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
+        ],),
     ],
 
 
