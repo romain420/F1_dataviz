@@ -13,7 +13,11 @@ import time
 from dash.dependencies import Input, Output
 from F1_dataviz_dash import gen_csv
 
+<<<<<<< HEAD
 gen_csv()
+=======
+gen_csv() 
+>>>>>>> multiple_file
 
 print('####################################################################')
 print('Creation du Dashboard')

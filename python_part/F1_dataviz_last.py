@@ -17,7 +17,11 @@ from dash import dcc
 from dash import html
 import time
 import plotly.io as pio
+<<<<<<< HEAD
 from dash.dependencies import Input, Output
+=======
+
+>>>>>>> multiple_file
 
 # ### Création des dataframes pour chaque fichier csv avec pandas
 
@@ -1553,9 +1557,12 @@ best_team_pit_stop
 
 
 
+<<<<<<< HEAD
 merge_race_result['continents'] = merge_race_result['continents'].str.lower()
 merge_race_result['continents'] = merge_race_result['continents'].replace({'north_america' : 'north america',
                                                                            'south_america' : 'south america'})
+=======
+>>>>>>> multiple_file
 
 markdown_map = '''
 ### Cartes sur le nombre de Grand Prix
