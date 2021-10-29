@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -21,8 +18,6 @@ from dash.dependencies import Input, Output
 import json
 
 # ### Création des dataframes pour chaque fichier csv avec pandas
-
-# In[2]:
 
 
 #import des fichier s'ils n'existe pas et verification de son téléchargement
@@ -45,7 +40,6 @@ else:
     print('le repertoir exist a present')
 
 
-# In[3]:
 
 
 #création de dataframe pour chaque fichier 'csv'
@@ -66,7 +60,6 @@ df_status = pd.read_csv('formula-1-world-championship-1950-2020/status.csv')
 
 # ### Création d'une liste possedant tous les dataframes
 
-# In[4]:
 
 
 list_df = [df_circuits,
@@ -86,15 +79,12 @@ list_df = [df_circuits,
 
 # ## Affichage des informations de chaque dataframes
 
-# In[5]:
-
 
 #for i in list_df : i.info()
 
 
 # ## Description des dataframes un à un
 
-# In[6]:
 
 
 #dataframe sur les différents circuits
@@ -102,7 +92,6 @@ df_circuits.drop(columns=["url"],inplace=True)
 df_circuits.head()
 
 
-# In[7]:
 
 
 #rename columns for easiest understanding
@@ -116,7 +105,6 @@ df_circuits.rename(columns = {'circuitRef':'Ref_circuit',
 df_circuits.head()
 
 
-# In[8]:
 
 
 #un peu de data viz
@@ -131,8 +119,6 @@ df_circuits.head()
 # A première vu le graph ci-dessus n'est pas très représentatif et compréhensible.
 # Pour rendre ce graph plus attractif,  nous allons créer une colonne qui donne le continent dans lequel se trouve le circuit.
 
-# In[10]:
-
 
 #nous allons d'abord recuperer uniquement la colonne qui donne le pays
 pays = df_circuits['country']
@@ -146,15 +132,12 @@ print("A present on voit qu'il y a", len(pays), "pays different dans en F1")
 
 # A présent nous allons créer une liste qui regroupe tous le continent
 
-# In[11]:
 
 
 continents = ['North_America', 'South_America', 'Africa', 'Asia', 'Oceania', 'Europe']
 
 
 # Nous allons maintenant créer un dictionnaire des continents avec les pays qui s'y trouvent
-
-# In[12]:
 
 
 #dans cd dictionnaire la clé sera le pays et la value le continent pour des soucis pratiques
@@ -200,7 +183,6 @@ print('')
 print("Les values de 'continents_dic' sont :\n",continents_dic.values())
 
 
-# In[13]:
 
 
 #creation d'un dictionnaire qui attribue une couleur a un continent
@@ -220,7 +202,7 @@ print("Les values de 'couleur_dic' sont :\n",couleur_dic.values())
 
 # Il faut maintenant un introduire les valeurs de 'continents_dic' dans une nouvelle colonne de 'df_circuits'
 
-# In[14]:
+
 
 
 #fonctin en 1 ligne (lambda) permetant d'assigner les valeurs de la nouvelle colonnes 'continents en finction de 'pays'
@@ -233,7 +215,7 @@ df_circuits.head()#on peut visualiser dans le df ci-dessous la nouvelle colonne 
 
 # Réalisation d'un script qui affichera l'empacement de chaque circuit sur la carte, ainsi qu'un symbole qui sera plus ou moins gros en fonction du nombre de course s'étant tenu sur celui-ci
 
-# In[15]:
+
 
 
 #creation d'une liste des latitudes et une autre liste pour les longitude
@@ -264,20 +246,17 @@ map
 
 # Dans ce dataframe le but va être de trié et de retirer le plus d'information possible du dataframe.
 
-# In[16]:
 
 
 df_constructors.head()
 
-
-# In[17]:
 
 
 nb_constru = df_constructors.shape[0]
 print("Il y a eu ", nb_constru, "de constructeur en F1 entre 1950 et 2021")
 
 
-# In[18]:
+
 
 
 #nous allons a present verifier s'il y a des deplicate dans les constructeurs
@@ -294,7 +273,6 @@ else:
 
 # On va commencé a regarder pour merge les dataframes des constructeurs avec celui de leur resultat
 
-# In[19]:
 
 
 #visualisation du dataframe de victoie de constructeur
@@ -303,7 +281,6 @@ df_constructor_results.head()
 
 # A present nous allons merge les 2 tableau a fin d'avoir les resulats par constructeurs merge par rapport au 'constructeurId'
 
-# In[20]:
 
 
 #merge des dataframe 'df_constructors' avec 'df_constructors_results'
@@ -313,7 +290,6 @@ df_constructors.tail()
 
 # Nous allons a present tenter de re-organiser le dataframe pour le rendre plus lisible
 
-# In[21]:
 
 
 new_columns = ['constructorId',
@@ -329,7 +305,6 @@ df_constructors = df_constructors[new_columns]
 df_constructors.head()
 
 
-# In[22]:
 
 
 #drope des duplicate pour le dataframe 'df_constructors'
@@ -337,7 +312,6 @@ df_constructors = df_constructors.drop_duplicates()
 df_constructors
 
 
-# In[23]:
 
 
 #visualisation de la forme du dataframe
@@ -349,21 +323,16 @@ df_constructors.dtypes
 
 # Cette partie va etes dedier au nombre de pooints inscrit par chaque ecurie au cours de l'histoire de la F1
 
-# In[24]:
 
 
 df_constructors.columns
 
-
-# In[25]:
 
 
 #utilisation de la fonction 'groupby' sur laquelle on applique la sum sur
 result_const = df_constructors.groupby('name').agg({'points':'sum'}).reset_index()
 result_const
 
-
-# In[26]:
 
 
 #le but va etre de sorte les points dans l'ordre croissant
@@ -378,21 +347,16 @@ result_const[160:]
 
 # ## Nous allons maintenant nous occuper de la partie 'result'
 
-# In[28]:
 
 
 #visualisation de la forme du dataframe
 df_results.head()
 
 
-# In[29]:
-
 
 #affichons la dataframe des drivers
 df_drivers
 
-
-# In[30]:
 
 
 #recuperation des noms prenom et id du driver
@@ -401,7 +365,6 @@ driver_name = df_drivers[name]
 driver_name
 
 
-# In[31]:
 
 
 #réalisation d'un merge entre les dataframes drivers name et df_result
@@ -415,13 +378,10 @@ new_result
 
 # Dans un premier temps recuperons les informations qui nous interresse depuis les dataframe 'circuits', 'result', 'constructor', 'race'
 
-# In[32]:
 
 
 df_races.head()
 
-
-# In[33]:
 
 
 #creation de la nouvelle df de race
@@ -432,7 +392,6 @@ race_info = race_info.rename(columns={"name": "GP_name",
 race_info.head()
 
 
-# In[34]:
 
 
 #creation de la nouvelle df de cicuit
@@ -441,8 +400,6 @@ circuits_info = df_circuits[columns_circuits]
 circuits_info = circuits_info.rename(columns={"name": "circuit_name"})
 circuits_info.head()
 
-
-# In[35]:
 
 
 #creation de la nouvelle df de constructeur
@@ -456,7 +413,6 @@ constructor_info.head()
 
 # Le premier merge consistera a fusionner 'circuits_info' et 'race_info' par rapport au 'circuitId'
 
-# In[36]:
 
 
 #merge et changement de l'ordre des colonnes de 'race_info'
@@ -471,7 +427,6 @@ race_info
 
 # Nous allons maintenant merge les df 'constructor_info', 'race_info' et 'df_result' concecutivement
 
-# In[37]:
 
 
 #################################
@@ -500,13 +455,10 @@ print('################################# ')
 print('Nous vous remercion pour votre patience')
 print('################################# ')
 
-# In[38]:
 
 
 new_result.columns
 
-
-# In[39]:
 
 
 #pour plus de lisibilité nous allons a prèsent fusionner les colonnes 'forename' et 'surname' dans une seul colonne
@@ -515,15 +467,11 @@ new_result = new_result.drop_duplicates().reset_index()
 new_result
 
 
-# In[40]:
-
-
 new_result['raceId'].max()
 
 
 # ### Creation de la fonction de resultats par GP/drivers
 
-# In[41]:
 
 
 #pour faciliter lutilisation de 'resulut_info' nous allons utiliser une fonction qui retourne le 'GP_name' ainsi que la 'GP_date'
@@ -545,7 +493,6 @@ gp_finder(18)
 
 # ### /!\ WARNING /!\ : Pour le moment la fonction ne fonctionne qu'avec un seul driver, corriger pour pourvoir mettre une liste de drivers
 
-# In[42]:
 
 
 #fonction retournant les information d'un GP en fonction de son ID ou de drivers en particulier si souhaite
@@ -609,13 +556,10 @@ result_info(18, 'Maxime bourgain')
 
 # Nous allons tout d'abord commencer par regrouper les informations qui nous interressent dans des dataframes pour les graphs qui suivrons
 
-# In[43]:
 
 
 new_result.columns
 
-
-# In[44]:
 
 
 #creation du dataframe 'df_dinamic_driv_cons' a partir de colonnes recupere dans 'new_result'
@@ -629,7 +573,6 @@ df_dinamic_driv_cons
 
 # A présent nous allons créer les colonnes qui nous manque pour pouvoir créer les scatters
 
-# In[45]:
 
 
 #ajout d'une colonne 'years' a partir de 'GP_date'
@@ -641,15 +584,12 @@ df_dinamic_driv_cons = recup_years(df_dinamic_driv_cons, 'GP_date')
 df_dinamic_driv_cons
 
 
-# In[46]:
 
 
 #verification des classement dans chaque GP
 test = ['rank', 'grid', 'position', 'points', 'constructor_name', 'GP_name', 'circuit_name', 'GP_date', 'full_name']
 new_result[test][:22].sort_values(by=['points'])
 
-
-# In[47]:
 
 
 #trie du df rapport a la date et au resultat de la course
@@ -661,15 +601,12 @@ df_dinamic_driv_cons
 
 # Regrouper les informations dans des plus petite df (2 colonne) pour ensuite les transformaer en dictionnaire et les ajouter a 'df_dinamic_driv_cons'
 
-# In[48]:
-
 
 #utilisation de la fonction 'groupby' sur laquelle on applique la 'count' sur
 driver_points = df_dinamic_driv_cons.groupby('full_name').agg({'points':'sum'}).reset_index()
 driver_points.sort_values(by=['points'])#.loc[driver_points['full_name'] == 'Lewis Hamilton']#verification pour un driver souhaité
 
 
-# In[49]:
 
 
 #creation d'un dictionnaire a partir de ce df
@@ -677,15 +614,12 @@ driver_points.sort_values(by=['points'])#.loc[driver_points['full_name'] == 'Lew
 dico_point_driver = driver_points.set_index('full_name').to_dict()['points']
 
 
-# In[50]:
 
 
 #ajout de la nouvelle colonne qui repertories les points par driver
 df_dinamic_driv_cons['points_drivers'] = df_dinamic_driv_cons.apply(lambda row: dico_point_driver[row['full_name']], axis = 1)
 df_dinamic_driv_cons
 
-
-# In[51]:
 
 
 #mise a l'echelle logarithmique avec remise a 0 des valeur '< 0'
@@ -698,7 +632,6 @@ df_dinamic_driv_cons
 
 # Nous allons dans un premier temps compter les nombre de course réalisé par un driver
 
-# In[52]:
 
 
 nb_race = df_dinamic_driv_cons.groupby('full_name').agg({'driverId':'count'}).reset_index()
@@ -711,8 +644,6 @@ nb_race = nb_race[rename_nb_race]
 #'nb_race' nouvelle dataframe qui contient le nombre de course disputé par un driver au cours de ca cariere
 nb_race
 
-
-# In[53]:
 
 
 #créationd d'une fonction de création de dictionnaire a partir de 2 colonnes d'un dataframe
@@ -735,15 +666,12 @@ dico_nb_race = {}
 dico_nb_race = df_to_dico(nb_race, 'full_name', 'number_race')
 
 
-# In[54]:
 
 
 #ajout de la nouvelle colonne qui repertories le nombre de course par driver
 df_dinamic_driv_cons['nombre_race'] = df_dinamic_driv_cons.apply(lambda row: dico_nb_race[row['full_name']], axis = 1)
 df_dinamic_driv_cons
 
-
-# In[55]:
 
 
 #ces 2 lignes permettent de remplacer '\N' par 0 car '\N' est une str particiliere
@@ -752,8 +680,6 @@ df_dinamic_driv_cons.position =  df_dinamic_driv_cons.position.astype(int)
 
 
 # Dans un second temps on va compter le nombre de victoire par driver
-
-# In[56]:
 
 
 #fonction permettant de compter le nombre de victoire de chaque driver dans l'histoire de la F1
@@ -780,8 +706,6 @@ constructor_victory = count_victory(df_dinamic_driv_cons, 'constructor_name', 'p
 #constructor_victory#le nombre de victoire par écurie a lui l'aire coérent
 
 
-# In[58]:
-
 
 #creation d'un dictionnaire a partir des 2 colonnes du dataframe genere precedement
 dico_nb_win = df_to_dico( finish_1, 'full_name', 'number_victory')
@@ -795,14 +719,10 @@ dico_zero = df_to_dico(driver_points, 'full_name', 'position')
 
 # Merge des 2 dictionnaire créée si dessus
 
-# In[59]:
-
 
 dico_zero.update(dico_nb_win)
 dico_nb_win = dico_zero
 
-
-# In[60]:
 
 
 #fonction permtant d'intergrer une colonne dans un datframe
@@ -829,7 +749,6 @@ df_dinamic_driv_cons = intergre_df_columns(df_dinamic_driv_cons, dico_nb_win, 'f
 df_dinamic_driv_cons
 
 
-# In[61]:
 
 
 #fonction permettant de compter le nobre de point inscrit dans l'histoir par un driver ou une ecurie
@@ -866,7 +785,6 @@ constru_point
 
 # On peut déjà constater que 'Lotus F1' et 'Team Lotus' sont différencier alors qu'elle rempresente la meme équipe
 
-# In[62]:
 
 
 test = pd.concat([constru_point, result_const], axis=1)
@@ -878,8 +796,6 @@ test = pd.concat([constru_point, result_const], axis=1)
 # Tentons une nouvelle technique qui nous permeterai de trouver un moyenne de compter le nombre de points/victoire de façon progressive au cours du temps.
 # Pour les drivers comme pour les écuries.
 
-# In[63]:
-
 
 #premiere tentavive a partir du dataframe 'df_dinamic_driv_cons'
 df_dinamic_driv_cons[24821:]
@@ -888,7 +804,6 @@ df_dinamic_driv_cons[24821:]
 # Pour mettre en place cette technique il faut s'assurer que de dataframe est deja trier par date.
 # Dans notre cas c'est déjà fait.
 
-# In[64]:
 
 
 #mise ne place de la technique
@@ -900,7 +815,6 @@ df_dinamic_driv_cons["cum_points"] = df_dinamic_driv_cons.groupby(['full_name'])
 
 # A partir de cette methode tentons de créer une fonction qui nous permettra de faire la meme chose.
 
-# In[66]:
 
 
 #fonction permettant de compter le nobre de point inscrit dans l'histoir par un driver ou une ecurie
@@ -916,8 +830,6 @@ def count_points(df, column_interest, new_col_name):
     return df
 
 
-# In[67]:
-
 
 #test de la fonction du dessus pour les constructeurs
 count_points(df_dinamic_driv_cons, 'constructor_name', 'cum_constru_points')
@@ -932,15 +844,12 @@ count_points(df_dinamic_driv_cons, 'constructor_name', 'cum_constru_points')
 
 # Création d'une fonction permettant de compter le nombre de victoire par driver/constructeur.
 
-# In[68]:
 
 
 #cellule de test avant la création de la fonction
 df_group = df_dinamic_driv_cons[df_dinamic_driv_cons.position==1]
 df_dinamic_driv_cons['victory_driv_count'] = df_group.groupby(['full_name'])['position'].cumcount() + 1
 
-
-# In[69]:
 
 
 #fonction permettant de compter le nobre de point inscrit dans l'histoir par un driver ou une ecurie
@@ -958,7 +867,6 @@ def count_victory(df, column_interest, new_col_name):
     return df
 
 
-# In[70]:
 
 
 #comptage du nombre de victoire par constructeur
@@ -992,19 +900,16 @@ count_victory(df_dinamic_driv_cons, 'constructor_name', 'victory_constru_count')
 
 # Visualisation des dataframe qui possendent les info suceptible de nous interressé
 
-# In[73]:
 
 
 df_circuits.head()
 
 
-# In[74]:
 
 
 df_results.head()
 
 
-# In[75]:
 
 
 df_races.head()
@@ -1012,7 +917,6 @@ df_races.head()
 
 # Récuperation des champs qui nous interressent dans les dataframe si-dessus
 
-# In[76]:
 
 
 #recuperation des informations de 'df_circuits'
@@ -1033,7 +937,6 @@ new_race_df = new_race_df.rename(columns = {'name' : 'GP_name'})
 
 # Dans cette partie la le but sera de merge progressivement chaque dataframe les uns avec les autres.
 
-# In[77]:
 
 
 #merge de dataframe race et circuits par rapport a l'id circuit
@@ -1041,7 +944,6 @@ new_race_df = new_race_df.merge(new_circuit_df, how = 'inner', on = 'circuitId')
 new_race_df.head()
 
 
-# In[78]:
 
 
 #merge de dataframe race et result par rapport a l'id race
@@ -1051,14 +953,11 @@ merge_race_result.head()
 
 # Ajout du non de driver en fonction de leur ID grace a la fonction **'intergre_df_columns'**
 
-# In[79]:
 
 
 #creation d'une colonne 'full_name' dans le dataframe de resultat
 df_drivers["full_name"] = df_drivers["forename"] + " " + df_drivers["surname"]
 
-
-# In[80]:
 
 
 #création d'un dictionnaire des ID avec le full_name des drivers
@@ -1073,7 +972,6 @@ merge_race_result.head()
 
 # Pour pouvoir travailler plus simplement avec le dataframe **'merge_race_result'** nous allons regarder le *type* de chaques colonnes
 
-# In[81]:
 
 
 merge_race_result.dtypes
@@ -1081,7 +979,6 @@ merge_race_result.dtypes
 
 # On voit que les colonnes ***'fastestLapTime'*** et ***'fastestLapSpeed'*** sont *'object'* alors qu'on attends du *int* ou du *float*. La raison pour laquel nous avons ce phénomène est à cause du **\N** que nous allons remplacer par **NaN**.
 
-# In[82]:
 
 
 #boucle 'for' pour les 2 colonnes qui sont de type 'object'
@@ -1106,7 +1003,6 @@ merge_race_result['fastestLapSpeed'] = merge_race_result['fastestLapSpeed'].asty
 # - ***'fastestLapSpeed'***
 # - ***'full_name'***
 
-# In[83]:
 
 
 #recuperation des tours les plus rapides
@@ -1119,8 +1015,6 @@ merge_race_result.head()
 
 
 # Le but sera de garder uniquement les ligne qui on la meme value dans les colonnes **'fastestLapTime'** et **'GP_fastes_lap'**
-
-# In[84]:
 
 
 filter_race_result = merge_race_result.query("fastestLapTime == GP_fastes_lap").reset_index()#filtre sur les
@@ -1135,8 +1029,6 @@ dico_fastest_lap
 
 # Après avoir filtré les meilleur temps par GP, le but sera de récupérer les grands pris de facon unique, soit drop si une raceId est présente plusieur fois.
 
-# In[85]:
-
 
 merge_race_result = merge_race_result.drop_duplicates(subset=['raceId'])
 # merge_race_result = merge_race_result.drop(['fastestLapTime', 'full_name'], axis=1)#on retire les colonnes qui ne nous interessent plus
@@ -1146,27 +1038,20 @@ intergre_df_columns(merge_race_result, dico_fastest_lap, 'GP_fastes_lap', 'faste
 # merge_race_result
 
 
-# In[86]:
-
 
 nombre_race = merge_race_result.groupby(['GP_name']).agg({'raceId':'count'}).reset_index()#contage du nombre de GP
 
-
-# In[87]:
 
 
 #contage progressif du nombre de GP et push dan une nouvelle colonne de notre df
 merge_race_result['nombre_GP'] = merge_race_result.groupby(['GP_name'])['raceId'].cumcount() + 1
 
 
-# In[88]:
 
 
 #test sur un GP pour voire la coerance de notre travail
 merge_race_result.loc[merge_race_result['GP_name'] == 'Azerbaijan Grand Prix', ['year', 'country', 'continents', 'GP_fastes_lap', 'nombre_GP']]
 
-
-# In[89]:
 
 
 dff = merge_race_result.copy()
@@ -1176,7 +1061,6 @@ dff['continents'].drop_duplicates()
 
 # La map dynamic des GP au cours du temps a travers le monde.
 
-# In[90]:
 
 
 #encore quelques bueugues a corriger :
@@ -1200,7 +1084,6 @@ def show_map_dyn(scope):
     return fig
 
 
-# In[91]:
 
 
 url1 = show_map_dyn('europe')
@@ -1208,7 +1091,6 @@ url1 = show_map_dyn('europe')
 
 # Creation d'une seconde map non dynimique dans une focntion permettant de placer des argument et des filtres sur les continent/courses qui nous interressent.
 
-# In[92]:
 
 
 #map static qui doit etre transformé en fonction dans lequel on assignera le continent ou la course qui nous interressent
@@ -1250,7 +1132,6 @@ def show_map_stat(scope):
     return fig
 
 
-# In[93]:
 
 
 #utilisation de la fonction 'show_map()'
@@ -1259,33 +1140,21 @@ url2 = show_map_stat('asia')#ligne 'color' a commenté décommenter pour récupe
 
 # ## Création du dashboard
 
-# In[94]:
 
 
 df_constructor_standings.tail()
 
 
-# In[95]:
-
-
 df_driver_standings.tail()
 
-
-# In[96]:
 
 
 merge_race_result.head()
 
 
-# In[97]:
-
-
 #common dico
 race_dico = df_to_dico(df_races, 'raceId', 'date')
 gp_dico = df_to_dico(merge_race_result, 'raceId', 'GP_name')
-
-
-# In[98]:
 
 
 driver_index1051 = df_driver_standings[df_driver_standings.raceId==1051].index
@@ -1300,8 +1169,6 @@ df_constructor_standings = intergre_df_columns(df_constructor_standings, gp_dico
 # df_constructor_standings
 
 
-# In[99]:
-
 
 #dico creation
 driver_dico = df_to_dico(df_drivers, 'driverId', 'full_name')
@@ -1314,8 +1181,6 @@ df_driver_standings = intergre_df_columns(df_driver_standings, race_dico, 'raceI
 df_driver_standings = recup_years(df_driver_standings , 'date')
 df_driver_standings
 
-
-# In[100]:
 
 
 #dico creation
@@ -1330,8 +1195,6 @@ df_constructor_standings = recup_years(df_constructor_standings , 'date')
 # df_constructor_standings
 
 
-# In[101]:
-
 
 #selection saison apres saison
 driver_saison_2020 = df_driver_standings[df_driver_standings.years == 2020]
@@ -1341,33 +1204,21 @@ print(saison_grouby.groups.keys())
 print(saison_grouby.groups['Abu Dhabi Grand Prix'])
 
 
-# In[148]:
-
 
 constructor_saison_2020=df_constructor_standings[df_constructor_standings.years==2020]
 constructor_saison_2020.reset_index(drop= True, inplace = True)
 
 
-# In[102]:
-
-
 gp_list = list(saison_grouby.groups.keys())
 
-
-# In[103]:
 
 
 saison_list = list(saison_grouby.groups['Abu Dhabi Grand Prix'])
 saison_list
 
 
-# In[104]:
-
 
 driver_saison_2020.iloc[saison_list].sort_values(by = ['position'], ascending=False)
-
-
-# In[105]:
 
 
 saison_dico = saison_grouby.groups
@@ -1376,33 +1227,18 @@ saison_dico.values
 
 # Réalistation d'un classement
 
-# In[124]:
-
 
 driver_saison_2020.head()
-
-
-# In[138]:
 
 
 driver_saison_2020 = driver_saison_2020.sort_values(by = ['date', 'position'])
 
 
-# In[139]:
-
-
 # driver_saison_2020.reset_index(drop=True, inplace = True)
 driver_saison_2020
 
-
-# In[140]:
-
-
 # fig = px.scatter(driver_saison_2020, x="GP_name", y="position", color="full_name")
 # fig.show()
-
-
-# In[141]:
 
 
 # fig = px.line(driver_saison_2020,
@@ -1413,13 +1249,7 @@ driver_saison_2020
 # fig.show()
 
 
-# In[153]:
-
-
 constructor_saison_2020 = constructor_saison_2020.sort_values(by = ['date', 'position'])
-
-
-# In[152]:
 
 
 # fig = px.line(constructor_saison_2020,
@@ -1432,13 +1262,7 @@ constructor_saison_2020 = constructor_saison_2020.sort_values(by = ['date', 'pos
 
 # Partie sur les pit-stop
 
-# In[107]:
-
-
 df_pit_stops
-
-
-# In[108]:
 
 
 #creation d'un dictionnaire avec 'race_id' et 'driver_id' en clef et 'constructor' en value
@@ -1446,65 +1270,36 @@ df_pit_stops
 df_dinamic_driv_cons.columns
 
 
-# In[109]:
-
-
 list_dico_creat = ['raceId', 'driverId', 'constructor_name']
 new_driv_cons = df_dinamic_driv_cons[list_dico_creat].drop_duplicates()
-
-
-# In[110]:
 
 
 new_driv_cons.reset_index(drop = True, inplace = True)
 list_constru = new_driv_cons.constructor_name
 
 
-# In[111]:
-
-
 new_driv_cons
 
-
-# In[112]:
 
 
 list_constru = list(list_constru)
 
 
-# In[113]:
-
 
 dico_driv_const = {(new_driv_cons.loc[k, 'raceId'], new_driv_cons.loc[k, 'driverId']): k for k in range(24780)}
-
-
-# In[114]:
-
 
 for i,j in zip(dico_driv_const.keys(), list_constru):
 #     print(i,j)
     dico_driv_const[i] = j
 
 
-# In[115]:
-
-
 df_pit_stops['constructors'] = df_pit_stops.apply(lambda row: dico_driv_const[row['raceId'], row['driverId']], axis = 1)
-
-
-# In[116]:
 
 
 df_pit_stops['seconds'] = df_pit_stops['milliseconds'] / 1000
 
 
-# In[117]:
-
-
 df_pit_stops.head()
-
-
-# In[118]:
 
 
 df_pit_stops.dtypes
@@ -1514,22 +1309,14 @@ df_pit_stops.dtypes
 result_const
 
 
-# In[120]:
-
 
 result_const_dico = df_to_dico(result_const, 'name', 'points')
 df_pit_stops = intergre_df_columns(df_pit_stops, result_const_dico, 'constructors', 'points')
 df_pit_stops
 
 
-# In[121]:
-
-
 best_team_pit_stop = df_pit_stops.loc[(df_pit_stops['points'] > 1000) & (df_pit_stops['seconds'] < 40)]
 best_team_pit_stop.reset_index(drop = True, inplace= True)
-
-
-# In[122]:
 
 
 best_team_pit_stop['one'] = 1
