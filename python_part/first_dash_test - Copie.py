@@ -104,16 +104,17 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
     children=[
         ########################################################################
         #division de la partie haute
-
-        ########################################################################
-        #left tool bar
-        html.Div(id = 'left_tool_bar', style = {'background-color' : '#B1A7A6',
-                                                    'width': '18%',
+        html.Section(id = 'upper_div', style = {'background-color' : '#F5F3F4',
+                                                'display' : 'flex',
+                                                'flex-flow' : 'row',
+                                                }, children=[
+            ########################################################################
+            #left tool bar
+            html.Div(id = 'left_tool_bar', style = {'background-color' : '#B1A7A6',
+                                                    'width': '20%',
                                                     'display' : 'flex',
                                                     'flex-flow' : 'column',
                                                     # 'justify-content' : 'space-around',
-                                                    'position' : 'fixed',
-                                                    'height':'100%',
                                                     'padding-top' : '0.5%',
                                                     'align-items' : 'center'}, children=[
 
@@ -192,17 +193,10 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
             ],),
             ########################################################################
 
-        html.Section(id = 'upper_div', style = {'background-color' : '#F5F3F4',
-                                                'display' : 'flex',
-                                                'flex-flow' : 'row',
-                                                'padding-left': '20%'
-                                                }, children=[
-            
-
             ########################################################################
             #right part of upper part
             html.Div(id = 'right_part', style = {'background-color' : '#F5F3F4',
-                                                #  'width': '80%',
+                                                 'width': '80%',
                                                  'display' : 'flex',
                                                  'flex-flow' : 'column'}, children=[
 
@@ -212,7 +206,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                                       'flex-flow' : 'row',
                                                       'margin-top'  : '0.7%'}, children=[
 
-                    html.Div(id= 'f1_logo',style={'margin-left' : '6%', 'padding-top':'2%'}, children = html.A(href = 'https://www.formula1.com/',children = html.Img(id = 'logo', style={'width' : '170px',
+                    html.Div(id= 'f1_logo',style={'margin-left' : '8%', 'padding-top':'2%'}, children = html.A(href = 'https://www.formula1.com/',children = html.Img(id = 'logo', style={'width' : '170px',
                                                     'height' : 'auto'}, src = "https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-2-2.png"),
                         ),
                     ),
@@ -234,17 +228,15 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
 
 
                     html.Div(id= 'text_and_graph', style={'display' : 'flex',
-                                                          'flex-flow' : 'column',
-                                                          'width':'100%'}, children = [
+                                                          'flex-flow' : 'column'}, children = [
 
                     dcc.Markdown(children=markdown_map, style={'padding-top' : '3%',
-                                                               'padding-right' : '1%',
+                                                               'padding-right' : '20%',
                                                                'padding-left' : '2%',
                                                                'color' : '#161A1D'}),
 
                     html.Div(id = 'div_graph', style = {'display' : 'flex',
                                                         'flex-flow' : 'row',
-                                                        'padding-right' : '2%',
                                                         'justify-content' : 'space-around',
                                                         'margin-top' : '1%'},
                         children =[
@@ -276,12 +268,11 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
         ########################################################################
         #division partie basse
         html.Section(id = 'down_div', style = {'background-color' : '#red',
-                                               'flex-flow' : 'row',
-                                               'padding-bottom':'2%'},children=[
+                                               'flex-flow' : 'row'},children=[
 
-            html.Div(id = 'div_histo_pit_stop', style = {'padding-top' : '3%',
-                                                         'padding-left' : '21%',
-                                                         'padding-right' : '1%',
+            html.Div(id = 'div_histo_pit_stop', style = {'padding-top' : '1%',
+                                                         'padding-left' : '2%',
+                                                         'padding-right' : '3%',
                                                          'display' : 'flex',
                                                          'flex-flow' : 'row'},
                 children =[
@@ -295,15 +286,15 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                     ),
 
                     dcc.Markdown(children=markdown_histo, style={'padding-top' : '0.5%',
-                                                           'padding-right' : '1%',
+                                                           'padding-right' : '5%',
                                                            'padding-left' : '2%',
                                                            'color' : '#161A1D',
                                                            'width' : '45%'}),
                 ]
             ),
-            html.Div(id='classement_driver', style={'padding-top' : '3%',
-                                                    'padding-left' : '17%',
-                                                    'padding-right' : '1%',
+            html.Div(id='classement_driver', style={'padding-top' : '1%',
+                                                    'padding-left' : '2%',
+                                                    'padding-right' : '3%',
                                                     'display' : 'flex',
                                                     'flex-flow' : 'column',
                                                     'align-items' : 'center'},children=[
@@ -318,14 +309,14 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                 ),
                 
                 dcc.Markdown(children=markdown_cls_driver, style={'padding-top' : '1%',
-                                                               'padding-right' : '15%',
+                                                               'padding-right' : '20%',
                                                                'padding-left' : '10%',
                                                                'color' : '#161A1D'}),
             ],),
 
             html.Div(id='classement_const', style={'padding-top' : '3%',
-                                                    'padding-left' : '17%',
-                                                    'padding-right' : '1%',
+                                                    'padding-left' : '2%',
+                                                    'padding-right' : '3%',
                                                     'display' : 'flex',
                                                     'flex-flow' : 'column',
                                                     'align-items' : 'center'},children=[
@@ -339,17 +330,15 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                 ),
 
                 dcc.Markdown(children=markodown_cls_const, style={'padding-top' : '1%',
-                                                               'padding-right' : '15%',
+                                                               'padding-right' : '20%',
                                                                'padding-left' : '10%',
                                                                'color' : '#161A1D'}),
             ],),
         ],),
 
         html.Section(id='last_part', style={'height':'200px',
-                                            # 'margin-top' : '3%',
-                                            'width':'100%',
-                                            'background-color':'#ba181b',
-                                            'position':'absolute'},children=[
+                                            'margin-top' : '3%',
+                                            'background-color':'#ba181b'},children=[
             html.A('Github F1_dataviz', href='https://github.com/romain420/F1_dataviz'),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
             html.Br(),
             html.A('Kaggle F1 dataset', href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
@@ -494,7 +483,7 @@ def update_figure2(select_constructor):
     dff = best_team_pit_stop.copy()
     new_df = dff[dff['constructors'].isin(select_constructor)]
     #creation de la premiere map
-    fig = px.histogram(new_df, x="seconds", y="time", color="constructors",
+    fig = px.histogram(new_df, x="seconds", y="one", color="constructors",
                    marginal="violin", # or violin, rug
                    hover_data=new_df.columns)
 

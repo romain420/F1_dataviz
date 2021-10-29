@@ -1319,7 +1319,7 @@ best_team_pit_stop = df_pit_stops.loc[(df_pit_stops['points'] > 1000) & (df_pit_
 best_team_pit_stop.reset_index(drop = True, inplace= True)
 
 
-best_team_pit_stop['one'] = 1
+best_team_pit_stop['time'] = 1
 best_team_pit_stop
 
 
