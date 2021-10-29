@@ -312,6 +312,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                     id='line_cls_driver',
                     figure={},
                     style={'width' : '90%',
+                            'height':'600px',#obliger de mettre une taille statique pour le moment
                             'display' : 'inline-block',
                             'border' : '2px solid #B1A7A6',
                             'border-radius' : '3%'}
@@ -531,7 +532,7 @@ def update_figure3(select_saison_driv):
     fig.update_layout(barmode='overlay',
                       template = 'plotly_dark',
                       title_text = 'Classement des drivers de la saison {}'.format(select_saison_driv))
-
+    fig.update_yaxes(autorange="reversed", tickmode='linear', tick0=1, dtick=1)
     #retourne classement en fonction de la saison choisi par l'utilisateur
     return fig
 # ------------------------------------------------------------------------------
@@ -560,7 +561,7 @@ def update_figure4(select_saison_const):
     fig.update_layout(barmode='overlay',
                       template = 'plotly_dark',
                       title_text = 'Classement des constructeurs de la saison {}'.format(select_saison_const))
-
+    fig.update_yaxes(autorange="reversed", tickmode='linear', tick0=1, dtick=1)
     #retourne classement en fonction de la saison choisi par l'utilisateur
     return fig
 # ------------------------------------------------------------------------------
