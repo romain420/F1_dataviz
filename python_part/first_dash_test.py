@@ -77,7 +77,23 @@ sur le podium du championnat dès de 3em *Grand Prix*. Il a fini par se battre t
 '''
 
 markodown_cls_const = '''
-### J'adore vraiment beaucoup JaaJ
+### Classement des constructeurs au cours d'un saison copléte  
+Comme le graph des driver, celui si-dessus montre le classements des constructeurs de F1 tout au long d'une saison, course après course.  
+
+Si nous prenons l'exemple de la saison 2020 (affichée par défaut). Nous pouvons regarder le classement de chaque constructeurs *Grand Prix*
+après *Grand Prix*.  
+
+Prenons cette fois ci l'expemple de [Red bull](https://www.redbull.com/int-en/redbullracing), nous constatons qu'après un très mauvais départ
+de championnat (en dernière position), il arrive en 2 course a se replacer en 2em postion du classement des constructeurs, derière 
+[Mercedes](https://www.mercedesamgf1.com/en/) qui ont passer la saison entière en première position.  
+
+Ce classement peut aussi etre interressant pour mettre en évidence les differement type d'écurie qui ce trouve dans le championnat (Top,
+midfield, back).  
+
+*Ici encore vous pouvez sélectionner la saison de votre choix*  
+
+***Lorsque vous selectionner une saison pour l'un des classements le changement n'est pas effectif pour les 2. Il faut donc en selectionner 
+une saison pour les 2 classements***
 '''
 
 ############################################################################################
@@ -321,8 +337,11 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
         ],),
 
         html.Section(id='last_part', style={'height':'200px',
+                                            'margin-top' : '3%',
                                             'background-color':'#ba181b'},children=[
-            html.A('Github F1_dataviz', href='https://github.com/romain420/F1_dataviz')#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
+            html.A('Github F1_dataviz', href='https://github.com/romain420/F1_dataviz'),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
+            html.Br(),
+            html.A('Kaggle F1 dataset', href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
         ],),
     ],
 
