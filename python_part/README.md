@@ -53,3 +53,10 @@ Dans le dataset mis à notre disposition, il y avait un dataframe qui regroupait
 problèmes auquels nous avons été confrouté était le manque d'information compréhenssible, tout était stoqué sous forme d' 'id' ('constructeurid', 'driverid'...). 
 Il nous à donc fallu merge les dataframes en fonction des id pour récuperé les noms de driver et constructeur en tout lettres pour facilité la conpréhention et la prise
 d'information dans notre dataframe.
+
+
+## User Guide
+
+## Developper Guide
+
+## Rapport d'analyse 
