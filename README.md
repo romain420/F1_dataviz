@@ -24,7 +24,7 @@ Et donc une grande facilité d'utilisation.
 
 Mais vous n'etes pas obliger de d'avoir anaconda sur votre machine. Il est néanmoins obligatoir d'avoir pyhton d'installé. Pour savoir si pyhton est bien installé il vous suffit d'ouvrir un *cmd* sur Windows ou un *Terminal* sur linux et de rentrer la commande ```python``` ou ```python3```. Si un editeur *python* souvre vous pouvez quitter l'editeur grace à la commande ```quit()``` et passer à l'étape suivante. Si se n'est pas la cas il vous faudra installer [python3](https://www.python.org/downloads/) qui vous sera proposé directement sous Windows.  
 
-Lorsque vous êtes assurés que *pyhton* est bien installé dans votre envrionnement de travail vous n'avez plus cas vous positionner dans le dossier du projet et entrer la commande : 
+Lorsque vous êtes assurés que *pyhton* est bien installé dans votre envrionnement de travail vous n'avez plus cas vous positionner dans le dossier du projet et entrer la commande (pour certaine distribution de Linux tel que *Ubuntu 18*  vous pouvez utiliser la commande de Windows): 
 
   - Sous Windows : 
     ```
