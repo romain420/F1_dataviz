@@ -186,7 +186,7 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                         style = {'background' : '#E5383B',
                                  'color' : '#0B090A'}
                     ),
-                    ],style = {'width' : '85%', 'padding-top' : '8%',}#, 'margin' : 'auto'
+                    ],style = {'width' : '85%', 'padding-top' : '8%'}#, 'margin' : 'auto'
                 ),
                 ########################################################################
             ],),
@@ -351,9 +351,9 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                             'width':'100%',
                                             'background-color':'#ba181b',
                                             'position':'absolute'},children=[
-            html.A('Github F1_dataviz', href='https://github.com/romain420/F1_dataviz'),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
+            html.A('Github F1_dataviz', style={'text-decoration':'none', 'color':'#f5f3f4'}, href='https://github.com/romain420/F1_dataviz'),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
             html.Br(),
-            html.A('Kaggle F1 dataset', href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
+            html.A('Kaggle F1 dataset', style={'text-decoration':'none', 'color':'#f5f3f4'}, href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
         ],),
     ],
 
