@@ -34,12 +34,12 @@ driver_saison_f1 = list(df_driver_standings.years.drop_duplicates().sort_values(
 
 markdown_map = '''
 ### Cartes sur le nombre de Grand Prix
-C'est 2 cartes servent à illuster le nombre de Grand Prix aillant eu lieux sur chaque circuit à travers le monde.
+C'est 2 cartes servent à illustrer le nombre de Grand Prix ayant eu lieu sur chaque circuit à travers le monde.
 
-La carte de gauche est dynamique dans le temps et montre l'evolution du nombre de courses saison après saison. Celle de droite
-elle ne permet que de visualiser de façon statique toute les courses qui ont eu lieux sur chaque circuit.
+La carte de gauche est dynamique dans le temps et montre l'évolution du nombre de courses saison après saison. Celle de droite
+elle ne permet que de visualiser de façon statique toutes les courses qui ont eu lieu sur chaque circuit.
 
-*Grace au callback vous pouvez changer de scope et choisir le continent qui vous interresse dans le premier dropdown de la toolbar à gauche de la page*
+*Grâce au callback vous pouvez changer de scope et choisir le continent qui vous intéresse dans le premier dropdown de la toolbar à gauche de la page*
 '''
 
 markdown_histo = '''
@@ -47,52 +47,52 @@ markdown_histo = '''
 L'histogramme de gauche est un histogramme qui permet de visualiser les distributions des vitesses
 de pit-stop chez les plus grands constructeurs de F1.
 
-**Définition :** Le temps d'un pit-stop est le temps que la voiture va passer arrêté pour que tous
-les mécaniciens aient le temps de faire toutes les modification qu'ils ont besoin d'éfectuer (changement des pneus le plus souvent).
+**Définition :** Le temps d'un pit-stop est le temps que la voiture va passer arrêtée pour que tous
+les mécaniciens aient le temps de faire toutes les modifications qu'ils ont besoin d'effectuer (changement des pneus le plus souvent).
 
-*Pour comparer les constructeurs vous pouvez aussi selectionner ceux qui vous interresse dans la toolbar en haut à gauche*
+*Pour comparer les constructeurs vous pouvez aussi sélectionner ceux qui vous intéressent dans la toolbar en haut à gauche*
 
-Pour pourvoir les comparer de façon optimal vous pouvez vous demander lequel posséde une distributions la plus à gauche, mais aussi
-lequel a l'emplitude la plus importante.
-L'amplitude montre le nombre de fois ou le pit-stop ce trouve dans cette tranche de temps.
+Pour pouvoir les comparer de façon optimale vous pouvez vous demander lequel possède une distribution la plus à gauche, mais aussi
+lequel a l'amplitude la plus importante.
+L'amplitude montre le nombre de fois ou le pit-stop se trouve dans cette tranche de temps.
 
-*Nous avons volontairement selectionner les plus grands constructeurs pour rendre les données plus attractive, ainsi que les temps
-de moins de 40s pour un soucis de vraisseblance et de pertinance*
+*Nous avons volontairement sélectionné les plus grands constructeurs pour rendre les données plus attractives, ainsi que les temps
+de moins de 40s pour un souci de vraisemblance et de pertinence*
 
 '''
 
 markdown_cls_driver = '''
-### Classement des drivers au cours d'une saison clompléte  
-Le graph ci-dessus permet d'afficher et de mettre en évidence l'évolution des positions de chaque driver tout au long d'une saision
+### Classement des drivers au cours d'une saison complète  
+Le graphe ci-dessus permet d'afficher et de mettre en évidence l'évolution des positions de chaque driver tout au long d'une saison
 course après course.  
 
 Si nous prenons l'exemple de la saison 2020 (affichée par défaut). Nous pouvons regarder le classement de chaque driver *Grand Prix*
 après *Grand Prix*.  
 
-Prenons l'exemple de [Max Verstappen](https://fr.wikipedia.org/wiki/Max_Verstappen), nous constatons qu'il a terminé 20em lors du 1er *Grand Prix* mais à réussi à repasser 
-sur le podium du championnat dès de 3em *Grand Prix*. Il a fini par se battre tout au long de la saison pour la 2em place du championnat avec
+Prenons l'exemple de [Max Verstappen](https://fr.wikipedia.org/wiki/Max_Verstappen), nous constatons qu'il a terminé 20em lors du 1er *Grand Prix* mais a réussi à repasser 
+sur le podium du championnat dés de 3em *Grand Prix*. Il a fini par se battre tout au long de la saison pour la 2em place du championnat avec
 [Valtteri Bottas](https://fr.wikipedia.org/wiki/Valtteri_Bottas). Et finir sur la 3em marche du podium.
 
-*Vous pouvez sélectionner la saison qui vous interresse dans la toolbox de gauche*
+*Vous pouvez sélectionner la saison qui vous intéresse dans la toolbox de gauche*
 '''
 
 markodown_cls_const = '''
-### Classement des constructeurs au cours d'un saison copléte  
-Comme le graph des driver, celui si-dessus montre le classements des constructeurs de F1 tout au long d'une saison, course après course.  
+### Classement des constructeurs au cours d'une saison complète  
+Comme le graphe des drivers, celui ci-dessus montre le classement des constructeurs de F1 tout au long d'une saison, course après course.  
 
-Si nous prenons l'exemple de la saison 2020 (affichée par défaut). Nous pouvons regarder le classement de chaque constructeurs *Grand Prix*
+Si nous prenons l'exemple de la saison 2020 (affichée par défaut). Nous pouvons regarder le classement de chaque constructeur *Grand Prix*
 après *Grand Prix*.  
 
-Prenons cette fois ci l'expemple de [Red bull](https://www.redbull.com/int-en/redbullracing), nous constatons qu'après un très mauvais départ
-de championnat (en dernière position), il arrive en 2 course a se replacer en 2em postion du classement des constructeurs, derière 
-[Mercedes](https://www.mercedesamgf1.com/en/) qui ont passer la saison entière en première position.  
+Prenons cette fois-ci l'exemple de [Red bull](https://www.redbull.com/int-en/redbullracing), nous constatons qu'après un très mauvais départ
+de championnat (en dernière position), il arrive en 2 courses à se replacer en 2em position du classement des constructeurs, derrière 
+[Mercedes](https://www.mercedesamgf1.com/en/) qui ont passé la saison entière en première position.  
 
-Ce classement peut aussi etre interressant pour mettre en évidence les differement type d'écurie qui ce trouve dans le championnat (Top,
+Ce classement peut aussi être intéressant pour mettre en évidence différemment les types d'écurie qui se trouve dans le championnat (Top,
 midfield, back).  
 
 *Ici encore vous pouvez sélectionner la saison de votre choix*  
 
-***Lorsque vous selectionner une saison pour l'un des classements le changement n'est pas effectif pour les 2. Il faut donc en selectionner 
+***Lorsque vous sélectionner une saison pour l'un des classements le changement n'est pas effectif pour les 2. Il faut donc en selectionner 
 une saison pour les 2 classements***
 '''
 
