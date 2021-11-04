@@ -20,10 +20,36 @@ des informations manquantes ou éroner soit mise à jour depuis le début du pro
 ### L'environement de travail
 
 Nous avons dans ce projet choisi de travailler avec l'environement '[anaconda](https://www.anaconda.com/products/individual)', qui propose une grande divercité de library des prè-installé.
-Et donc une grande facilité d'utilisation.  
+Et donc une grande facilité d'utilisation. 
 
-Néant-moins quelque library sont à installer sur votre environement si vous voulez complètement utilisé les 
-capacité de notre projet.
+Mais vous n'etes pas obliger de d'avoir anaconda sur votre machine. Il est néanmoins obligatoir d'avoir pyhton d'installé. Pour savoir si pyhton est bien installé il vous suffit d'ouvrir un *cmd* sur Windows ou un *Terminal* sur linux et de rentrer la commande ```python``` ou ```python3```. Si un editeur *python* souvre vous pouvez quitter l'editeur grace à la commande ```quit()``` et passer à l'étape suivante. Si se n'est pas la cas il vous faudra installer [python3](https://www.python.org/downloads/) qui vous sera proposé directement sous Windows.  
+
+Lorsque vous êtes assurés que *pyhton* est bien installé dans votre envrionnement de travail vous n'avez plus cas vous positionner dans le dossier du projet et entrer la commande (pour certaine distribution de Linux tel que *Ubuntu 18*  vous pouvez utiliser la commande de Windows): 
+
+  - Sous Windows : 
+    ```
+    python main.py
+    ```
+  - Sous Linux : 
+    ```
+    python3 main.py
+    ```
+Vous devez attendre l'execution compléte du code jusqu'à ce que celui-ci affiche une partie de script indicant : 
+
+```cmd
+Dash is running on http://127.0.0.1:8050/
+
+ * Serving Flask app 'first_dash_test' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+```
+A partir de ce moment la vous pourrez ouvrir le navigateur de votre choix (chromium privilégié) et y rentrer l'[adresse](http://127.0.0.1:8050/) precisé dans le script ci-dessus ou alors *localhost:8050*. 
+
+Il se peut que des petite erreur serveur ce produise lors du chargment du dashboard. Dans ce cas n'hésitez pas à recharger la page jusqu'à ce que les erreur disparaisse si elle ne le fait pas automatiquement. 
+
+Si vous voulez vous pouvez vous pouvez installer els library manuellement bien que leur installation ce fait de manière automatique à l'execution de la commande précédente.
 Les library a installé dans l'environement anaconda sont : 
 
   - 'folium' lien du git :
@@ -49,17 +75,6 @@ Les library a installé dans l'environement anaconda sont :
 
 Les library indiqué ci-dessus sont à installer imperativement pour le bon fonctionnement du code. Il faut aussi installer l'environement ***anaconda*** (si ce n'est pas déjà fait) pour la gestion des package de base telque de **numpy** ou **pandas**. 
 
-### L'execution compléte du dashboard
-Pour l'execution compléte du dashboard il vous faut lancer le fichier ```main.py``` dans l'***anaconda_prompt*** à l'aide de la commande : 
-  - si vous êtes sur *Windows*
-    ```
-    python main.py
-    ```
-  - si vous êtes sur *Linux*  
-    ```
-    python3 main.py
-    ```
-
 ## Developper Guide
 
 A l'intérieur de ce **repository**, vous trouverez tout les parties du code permettant de **néttoyer** les données, de **generer** des csv et pour finir le code permettant par la suite de **generer** le *Dashboard*.
@@ -79,7 +94,7 @@ Ce fichier est découper en 2 partie :
   - La seconde est celle des **callbacks** qui sert à créer les graphs et gerer le lien entre les graphs et les actions de l'utilisateur.
 
 ### L'execution compléte du dashboard
-Pour l'execution compléte du dashboard il vous faut lancer le fichier ```main.py``` dans l'***anaconda_prompt*** à l'aide de la commande : 
+Pour l'execution compléte du dashboard il vous faut lancer le fichier ```main.py``` dans une invete de commande comme stipuler dans le User Guide à l'aide de la commande : 
   - si vous êtes sur *Windows*
     ```
     python main.py
