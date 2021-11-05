@@ -351,9 +351,18 @@ app.layout = html.Section(id = 'container_div', style={'background-color': '#F5F
                                             'width':'100%',
                                             'background-color':'#ba181b',
                                             'position':'absolute'},children=[
-            html.A('Github F1_dataviz', style={'text-decoration':'none', 'color':'#f5f3f4'}, href='https://github.com/romain420/F1_dataviz'),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
             html.Br(),
-            html.A('Kaggle F1 dataset', style={'text-decoration':'none', 'color':'#f5f3f4'}, href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
+            html.A('Github F1_dataviz', style={'text-decoration':'none', 'color':'#f5f3f4','background': "url('http://pngimg.com/uploads/github/github_PNG40.png') no-repeat 100% 0",
+                    'background-size': '20px 20px',
+                    'padding-right': '19px',
+                    'padding-left': '3%'}, href='https://github.com/romain420/F1_dataviz',
+                   ),#, style={'color' : '#161a1d'})#image de git(https://www.ecosia.org/images?q=github#id=461786A55A3D6A0E38A539479785CB1856D3961F)
+            html.Br(),
+            html.Br(),
+            html.A('Kaggle F1 dataset', style={'text-decoration':'none', 'color':'#f5f3f4','background': "url('https://cdn3.iconfinder.com/data/icons/logos-and-brands-adobe/512/189_Kaggle-512.png') no-repeat 100% 0",
+                    'background-size': '20px 20px',
+                    'padding-right': '19px',
+                    'padding-left': '3%'}, href='https://www.kaggle.com/rohanrao/formula-1-world-championship-1950-2020')
         ],),
     ],
 
@@ -568,4 +577,4 @@ def update_figure4(select_saison_const):
 
 #partie de selectiond de ce qui sera lancer a l'execution
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()#debug=True#a rajouter en argument de run_server() lors de phase de dev
